@@ -15,7 +15,7 @@ import yt_dlp
 from .constants import DEFAULT_RETRY_BACKOFF_FACTOR, DEFAULT_RETRY_STATUS_FORCELIST, SHARED_HEADERS
 
 if TYPE_CHECKING:
-    from collections.abc import Collection, Iterable, Mapping
+    from collections.abc import Collection, Mapping
 
 __all__ = ('YoutubeDLLogger', 'get_configured_yt_dlp', 'setup_session')
 
@@ -82,7 +82,6 @@ def get_configured_yt_dlp(sleep_time: int = 3,
 
 def setup_session(browser: str,
                   profile: str,
-                  domains: Iterable[str],
                   headers: Mapping[str, str] | None = None,
                   add_headers: Mapping[str, str] | None = None,
                   backoff_factor: float = DEFAULT_RETRY_BACKOFF_FACTOR,
@@ -99,8 +98,6 @@ def setup_session(browser: str,
         The browser to extract cookies from.
     profile : str
         The profile to extract cookies from.
-    domains : Iterable[str]
-        The domains of which to extract cookies.
     headers : Mapping[str, str]
         The headers to use for the requests session. If not specified, a default set will be used.
     add_headers : Mapping[str, str]
@@ -125,9 +122,5 @@ def setup_session(browser: str,
             'https://',
             HTTPAdapter(max_retries=Retry(backoff_factor=backoff_factor,
                                           status_forcelist=status_forcelist)))
-    extracted = extract_cookies_from_browser(browser, profile)
-    cookies = '; '.join('; '.join(f'{cookie.name}={cookie.value}' for cookie in extracted
-                                  if domain in cookie.domain) for domain in domains)
-    # | does not work for Mapping
-    session.headers.update({**headers, **add_headers, 'cookie': cookies})
+    session.headers.update(extract_cookies_from_browser(browser, profile))
     return session
