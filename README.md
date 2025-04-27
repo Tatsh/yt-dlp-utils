@@ -7,7 +7,7 @@
 [![PyPI - Version](https://img.shields.io/pypi/v/yt-dlp-utils)](https://pypi.org/project/yt-dlp-utils/)
 [![GitHub tag (with filter)](https://img.shields.io/github/v/tag/Tatsh/yt-dlp-utils)](https://github.com/Tatsh/yt-dlp-utils/tags)
 [![License](https://img.shields.io/github/license/Tatsh/yt-dlp-utils)](https://github.com/Tatsh/yt-dlp-utils/blob/master/LICENSE.txt)
-[![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/yt-dlp-utils/v0.0.1/master)](https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.1...master)
+[![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/yt-dlp-utils/v0.0.2/master)](https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.2...master)
 ![License](https://img.shields.io/badge/License-MIT-success.svg)
 [![mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
