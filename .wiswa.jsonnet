@@ -3,7 +3,7 @@
   description: 'Utilities for programmatic use of yt-dlp.',
   keywords: ['command line', 'yt-dlp'],
   project_name: 'yt-dlp-utils',
-  version: '0.0.2',
+  version: '0.0.3',
   citation+: {
     'date-released': '2025-04-25',
   },
