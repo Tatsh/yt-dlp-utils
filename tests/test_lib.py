@@ -1,11 +1,15 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 from yt_dlp_utils.constants import SHARED_HEADERS
 from yt_dlp_utils.lib import YoutubeDLLogger, get_configured_yt_dlp, setup_session
+import yt_dlp
+import yt_dlp.cookies
 
 if TYPE_CHECKING:
+    from unittest.mock import Mock
+
     from pytest_mock import MockerFixture
 
 
@@ -31,37 +35,55 @@ def test_youtube_dl_logger(mocker: MockerFixture) -> None:
     mock_log_info.assert_called_with('%s', 'Info message')
 
 
+def test_create_requests_session_no_domains_arg(mocker: MockerFixture) -> None:
+    mock_extract_cookies = mocker.patch('yt_dlp_utils.lib.extract_cookies_from_browser')
+    mocker.patch('requests.Session', return_value=mocker.Mock(headers={}))
+
+    session = cast('Mock', setup_session(browser='chrome', profile='default'))
+
+    mock_extract_cookies.assert_called_once_with('chrome', 'default')
+    assert session.cookies.set.call_count == 0
+    assert session.headers['user-agent'] == SHARED_HEADERS['user-agent']
+
+
 def test_create_requests_session_with_default_headers(mocker: MockerFixture) -> None:
     cookie1 = mocker.Mock(value='value1', domain='example.com')
     cookie1.name = 'cookie1'
+    mock_jar = mocker.Mock(spec=yt_dlp.cookies.YoutubeDLCookieJar)
+    mock_jar.get_cookies_for_url.return_value = [cookie1]
     mock_extract_cookies = mocker.patch('yt_dlp_utils.lib.extract_cookies_from_browser',
-                                        return_value=[cookie1])
+                                        return_value=mock_jar)
     mocker.patch('requests.Session', return_value=mocker.Mock(headers={}))
 
-    session = setup_session(browser='chrome', profile='default', domains=['example.com'])
+    session = cast('Mock',
+                   setup_session(browser='chrome', profile='default', domains=['example.com']))
 
     mock_extract_cookies.assert_called_once_with('chrome', 'default')
-    assert 'cookie' in session.headers
-    assert session.headers['cookie'] == 'cookie1=value1'
+    session.cookies.set.assert_called_once_with(cookie1.name, cookie1.value, domain=cookie1.domain)
+
     assert session.headers['user-agent'] == SHARED_HEADERS['user-agent']
 
 
 def test_create_requests_session_with_custom_headers(mocker: MockerFixture) -> None:
     cookie1 = mocker.Mock(value='value1', domain='example.com')
     cookie1.name = 'cookie1'
+    mock_jar = mocker.Mock(spec=yt_dlp.cookies.YoutubeDLCookieJar)
+    mock_jar.get_cookies_for_url.return_value = [cookie1]
     mock_extract_cookies = mocker.patch('yt_dlp_utils.lib.extract_cookies_from_browser',
-                                        return_value=[cookie1])
+                                        return_value=mock_jar)
     mocker.patch('requests.Session', return_value=mocker.Mock(headers={}))
 
-    session = setup_session(browser='chrome',
-                            profile='default',
-                            domains=['example.com'],
-                            headers={'Custom-Header': 'CustomValue'},
-                            add_headers={'Another-Header': 'AnotherValue'})
+    session = cast(
+        'Mock',
+        setup_session(browser='chrome',
+                      profile='default',
+                      domains=['example.com'],
+                      headers={'Custom-Header': 'CustomValue'},
+                      add_headers={'Another-Header': 'AnotherValue'}))
 
     mock_extract_cookies.assert_called_once_with('chrome', 'default')
-    assert 'cookie' in session.headers
-    assert session.headers['cookie'] == 'cookie1=value1'
+    session.cookies.set.assert_called_once_with(cookie1.name, cookie1.value, domain=cookie1.domain)
+
     assert session.headers['Custom-Header'] == 'CustomValue'
     assert session.headers['Another-Header'] == 'AnotherValue'
 
@@ -73,22 +95,30 @@ def test_create_requests_session_with_retry(mocker: MockerFixture) -> None:
     cookie2.name = 'cookie2'
     cookie3 = mocker.Mock(value='value3', domain='example.com')
     cookie3.name = 'cookie3'
+    cookie4 = mocker.Mock(value=1, domain='youtube.com')
+    cookie4.name = 'cookie4'
+    mock_jar = mocker.Mock(spec=yt_dlp.cookies.YoutubeDLCookieJar)
+    mock_jar.get_cookies_for_url.side_effect = [[cookie1, cookie3], [cookie2, cookie4]]
     mock_extract_cookies = mocker.patch('yt_dlp_utils.lib.extract_cookies_from_browser',
-                                        return_value=[cookie1, cookie2, cookie3])
+                                        return_value=mock_jar)
     mocker.patch('requests.Session', return_value=mocker.Mock(headers={}))
     mock_adapter = mocker.patch('yt_dlp_utils.lib.HTTPAdapter')
 
-    session = setup_session(browser='chrome',
-                            profile='default',
-                            domains=['example.com', 'youtube.com'],
-                            setup_retry=True,
-                            backoff_factor=0.5,
-                            status_forcelist=[500, 502, 503])
-
+    session = cast(
+        'Mock',
+        setup_session(browser='chrome',
+                      profile='default',
+                      domains=['example.com', '.youtube.com'],
+                      setup_retry=True,
+                      backoff_factor=0.5,
+                      status_forcelist=[500, 502, 503]))
     mock_extract_cookies.assert_called_once_with('chrome', 'default')
     mock_adapter.assert_called_once_with(max_retries=mocker.ANY)
-    assert 'cookie' in session.headers
-    assert session.headers['cookie'] == 'cookie1=value1; cookie3=value3; cookie2=value2'
+    session.cookies.set.assert_has_calls([
+        mocker.call(cookie1.name, cookie1.value, domain=cookie1.domain),
+        mocker.call(cookie3.name, cookie3.value, domain=cookie3.domain),
+        mocker.call(cookie2.name, cookie2.value, domain=cookie2.domain)
+    ])
 
 
 def test_get_configured_yt_dlp_default(mocker: MockerFixture) -> None:

@@ -15,14 +15,14 @@ import yt_dlp
 from .constants import DEFAULT_RETRY_BACKOFF_FACTOR, DEFAULT_RETRY_STATUS_FORCELIST, SHARED_HEADERS
 
 if TYPE_CHECKING:
-    from collections.abc import Collection, Mapping
+    from collections.abc import Collection, Iterable, Mapping
 
 __all__ = ('YoutubeDLLogger', 'get_configured_yt_dlp', 'setup_session')
 
 log = logging.getLogger(__name__)
 
 
-class YoutubeDLLogger:
+class YoutubeDLLogger(yt_dlp.cookies.YDLLogger):
     """Logger for yt-dlp."""
     def debug(self, message: str) -> None:
         """Log a debug message."""
@@ -34,7 +34,11 @@ class YoutubeDLLogger:
         """Log an info message."""
         log.info('%s', re.sub(r'^\[info\]\s+', '', message))
 
-    def warning(self, message: str) -> None:
+    def warning(
+            self,
+            message: str,
+            once: bool = False,  # noqa: FBT001, FBT002
+            only_once: bool = False) -> None:  # noqa: FBT001, FBT002
         """Log a warning message."""
         log.warning('%s', re.sub(r'^\[warn(?:ing)?\]\s+', '', message))
 
@@ -82,11 +86,12 @@ def get_configured_yt_dlp(sleep_time: int = 3,
 
 def setup_session(browser: str,
                   profile: str,
-                  headers: Mapping[str, str] | None = None,
                   add_headers: Mapping[str, str] | None = None,
                   backoff_factor: float = DEFAULT_RETRY_BACKOFF_FACTOR,
-                  status_forcelist: Collection[int] = DEFAULT_RETRY_STATUS_FORCELIST,
+                  domains: Iterable[str] | None = None,
+                  headers: Mapping[str, str] | None = None,
                   session: requests.Session | None = None,
+                  status_forcelist: Collection[int] = DEFAULT_RETRY_STATUS_FORCELIST,
                   *,
                   setup_retry: bool = False) -> requests.Session:
     """
@@ -98,12 +103,14 @@ def setup_session(browser: str,
         The browser to extract cookies from.
     profile : str
         The profile to extract cookies from.
-    headers : Mapping[str, str]
-        The headers to use for the requests session. If not specified, a default set will be used.
     add_headers : Mapping[str, str]
         Additional headers to add to the requests session.
     backoff_factor : float
         The backoff factor to use for the retry mechanism.
+    domains : Iterable[str]
+        Filter the cookies to only those that match the specified domains.
+    headers : Mapping[str, str]
+        The headers to use for the requests session. If not specified, a default set will be used.
     status_forcelist : Collection[int]
         The status codes to retry on.
     setup_retry : bool
@@ -117,10 +124,20 @@ def setup_session(browser: str,
     headers = headers or SHARED_HEADERS
     add_headers = add_headers or {}
     session = session or requests.Session()
+    session.headers.update(headers)
+    session.headers.update(add_headers)
     if setup_retry:
         session.mount(
             'https://',
             HTTPAdapter(max_retries=Retry(backoff_factor=backoff_factor,
                                           status_forcelist=status_forcelist)))
-    session.headers.update(extract_cookies_from_browser(browser, profile))
+    extracted = extract_cookies_from_browser(browser, profile)
+    if not domains:
+        session.cookies.update(extracted)
+    else:
+        for domain in (d.lstrip('.') for d in domains):
+            for cookie in extracted.get_cookies_for_url(f'https://{domain}'):
+                if not isinstance(cookie.value, str):
+                    continue
+                session.cookies.set(cookie.name, cookie.value, domain=domain)
     return session
