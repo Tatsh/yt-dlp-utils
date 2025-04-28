@@ -1,7 +1,6 @@
 autoclass
 autodoc
 autofunction
-automodule
 codeowners
 colored
 commitizen
