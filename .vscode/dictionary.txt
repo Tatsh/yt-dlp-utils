@@ -2,7 +2,6 @@ autoclass
 autodoc
 autofunction
 codeowners
-colored
 commitizen
 conftest
 coveragerc
@@ -29,7 +28,6 @@ jinja
 jsonnet
 jsonschema
 khtml
-levelname
 lextudio
 libjsonnet
 modindex
