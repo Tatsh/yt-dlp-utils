@@ -31,7 +31,9 @@ khtml
 lextudio
 libjsonnet
 modindex
+multiline
 mypy
+noninfringement
 norecursedirs
 numpy
 numpydoc
@@ -46,6 +48,7 @@ pytest
 regen
 schemafile
 sphinxcontrib
+sublicense
 tatsh
 testpaths
 toctree
