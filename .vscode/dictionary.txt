@@ -1,6 +1,7 @@
 autoclass
 autodoc
 autofunction
+bsky
 codeowners
 commitizen
 conftest
