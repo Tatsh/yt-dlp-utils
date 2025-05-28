@@ -53,16 +53,16 @@ html_theme_options = {
     }, {
         'accent': 'light-blue',
         'media': '(prefers-color-scheme: light)',
-        'primary': 'light-green',
+        'primary': 'teal',
         'scheme': 'default',
         'toggle': {
             'icon': 'material/lightbulb',
             'name': 'Switch to dark mode'
         }
     }, {
-        'accent': 'lime',
+        'accent': 'blue',
         'media': '(prefers-color-scheme: dark)',
-        'primary': 'deep-orange',
+        'primary': 'black',
         'scheme': 'slate',
         'toggle': {
             'icon': 'material/lightbulb-outline',
@@ -74,7 +74,4 @@ html_theme_options = {
     'site_url': 'https://yt-dlp-utils.readthedocs.org',
     'toc_title_is_page_title': True
 }
-intersphinx_mapping = {
-    'python': ('https://docs.python.org/3', None),
-    'requests': ('https://requests.readthedocs.io/en/latest/', None)
-}
+intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}

@@ -5,14 +5,14 @@
   project_name: 'yt-dlp-utils',
   version: '0.0.4',
   citation+: {
-    'date-released': '2025-04-25',
+    'date-released': '2025-05-28',
   },
   pyproject+: {
     tool+: {
       poetry+: {
         dependencies+: {
           requests: '^2.32.3',
-          'yt-dlp': { extras: ['default'], version: '^2025.3.31' },
+          'yt-dlp': { extras: ['default'], version: '^2025.5.22' },
         },
         group+: {
           dev+: {

@@ -1,3 +1,4 @@
+"""Constants."""
 from __future__ import annotations
 
 __all__ = ('DEFAULT_RETRY_BACKOFF_FACTOR', 'DEFAULT_RETRY_STATUS_FORCELIST', 'SHARED_HEADERS',

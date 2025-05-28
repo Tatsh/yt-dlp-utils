@@ -143,13 +143,16 @@ def test_get_configured_yt_dlp_with_custom_params(mocker: MockerFixture) -> None
     mock_parse_options = mocker.patch('yt_dlp.parse_options', return_value=({}, {}, {}))
     mock_yt_dlp = mocker.patch('yt_dlp.YoutubeDL')
 
-    get_configured_yt_dlp(sleep_time=5, debug=True)
+    get_configured_yt_dlp(sleep_time=5, debug=True, http_headers={'referer': 'https://example.com'})
 
     mock_parse_options.assert_called_once()
     mock_yt_dlp.assert_called_once_with({
         'color': {
             'stdout': 'never',
             'stderr': 'never'
+        },
+        'http_headers': {
+            'referer': 'https://example.com'
         },
         'logger': mocker.ANY,
         'sleep_interval_requests': 5,

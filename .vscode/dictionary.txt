@@ -12,7 +12,6 @@ debugpy
 djlint
 doctrees
 eeyore
-erdantic
 esbenp
 esbonio
 excinfo
@@ -31,10 +30,9 @@ jsonschema
 khtml
 lextudio
 libjsonnet
+linters
 modindex
-multiline
 mypy
-noninfringement
 norecursedirs
 numpy
 numpydoc
@@ -46,10 +44,11 @@ pylance
 pyproject
 pyright
 pytest
+referer
 regen
+rstcheck
 schemafile
 sphinxcontrib
-sublicense
 tatsh
 testpaths
 toctree
