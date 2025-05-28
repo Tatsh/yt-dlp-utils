@@ -1,12 +1,13 @@
 """Utilities."""
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 import logging
 import re
 import sys
 
 from requests.adapters import HTTPAdapter
+from typing_extensions import Unpack
 from urllib3 import Retry
 from yt_dlp.cookies import extract_cookies_from_browser
 import requests
@@ -48,23 +49,24 @@ class YoutubeDLLogger(yt_dlp.cookies.YDLLogger):
 
 
 def get_configured_yt_dlp(sleep_time: int = 3,
-                          logger: Any = None,
                           *,
-                          debug: bool = False) -> yt_dlp.YoutubeDL:
+                          debug: bool = False,
+                          **kwargs: Unpack[yt_dlp.YDLOpts]) -> yt_dlp.YoutubeDL:
     """
     Get a configured ``YoutubeDL`` instance.
 
     This function sets up a ``yt_dlp.YoutubeDL`` instance with the user's configuration (e.g.
-    located at ``~/.config/yt-dlp/config``). It overrides the default logger, disables colours, and
-    sets the sleep time between requests. It also sets the verbose flag based on the ``debug``
+    located at ``~/.config/yt-dlp/config``). It overrides the default logger (``logger`` option),
+    disables colours (``color`` option), and sets the sleep time between requests
+    (``sleep_interval_requests`` option). It also sets the ``verbose`` flag based on the ``debug``
     parameter.
+
+    All other keyword arguments are passed directly to the ``yt_dlp.YoutubeDL`` constructor.
 
     Parameters
     ----------
     sleep_time : int
         The time to sleep between requests, in seconds. Default is 3 seconds.
-    logger : Any
-        The logger to use. See :py:class:`YoutubeDLLogger` for details.
     debug : bool
         Whether to enable debug mode. Default is False.
 
@@ -77,11 +79,11 @@ def get_configured_yt_dlp(sleep_time: int = 3,
     sys.argv = [sys.argv[0]]
     ydl_opts = yt_dlp.parse_options()[-1]
     ydl_opts['color'] = {'stdout': 'never', 'stderr': 'never'}
-    ydl_opts['logger'] = logger or YoutubeDLLogger()
+    ydl_opts['logger'] = kwargs.pop('logger', YoutubeDLLogger())
     ydl_opts['sleep_interval_requests'] = sleep_time
     ydl_opts['verbose'] = debug
     sys.argv = old_sys_argv
-    return yt_dlp.YoutubeDL(ydl_opts)
+    return yt_dlp.YoutubeDL(ydl_opts | kwargs)
 
 
 def setup_session(browser: str,
