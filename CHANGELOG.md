@@ -9,8 +9,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.0.4] - 2025-05-28
+
+### Changed
+
+- In `utils.get_configured_yt_dlp()`, accept keyword arguments to pass to `YoutubeDL`.
+
 ## [0.0.1] - 2025-00-00
 
 First version.
 
-[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.3...HEAD
+[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.4...HEAD
