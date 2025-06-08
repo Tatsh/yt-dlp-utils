@@ -9,6 +9,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.0.5] - 2025-06-08
+
+### Changed
+
+- Updated types used from yt-dlp-types.
+
 ## [0.0.4] - 2025-05-28
 
 ### Changed
@@ -19,4 +25,4 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 First version.
 
-[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.4...HEAD
+[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.5...HEAD
