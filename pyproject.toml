@@ -78,7 +78,7 @@ warn_unreachable = true
 [tool.poetry.dependencies]
 python = ">=3.10,<3.14"
 requests = "^2.32.3"
-typing-extensions = "^4.13.2"
+typing-extensions = "^4.14.0"
 
 [tool.poetry.dependencies.yt-dlp]
 extras = ["default"]
@@ -90,11 +90,11 @@ optional = true
 [tool.poetry.group.dev.dependencies]
 commitizen = "^4.8.2"
 djlint = "^1.36.4"
-mypy = ">=1.12,<1.17"
-ruff = "^0.11.12"
+mypy = "^1.16.0"
+ruff = "^0.11.13"
 types-requests = "^2.32.0.20250602"
 yapf = "^0.43.0"
-yt-dlp-types = "^0"
+yt-dlp-types = "^0.0.17"
 
 [tool.poetry.group.docs]
 optional = true

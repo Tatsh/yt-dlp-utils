@@ -35,11 +35,7 @@ class YoutubeDLLogger(yt_dlp.cookies.YDLLogger):
         """Log an info message."""
         log.info('%s', re.sub(r'^\[info\]\s+', '', message))
 
-    def warning(
-            self,
-            message: str,
-            once: bool = False,  # noqa: FBT001, FBT002
-            only_once: bool = False) -> None:  # noqa: FBT001, FBT002
+    def warning(self, message: str, *, only_once: bool = False) -> None:  # type: ignore[override]
         """Log a warning message."""
         log.warning('%s', re.sub(r'^\[warn(?:ing)?\]\s+', '', message))
 
@@ -51,7 +47,7 @@ class YoutubeDLLogger(yt_dlp.cookies.YDLLogger):
 def get_configured_yt_dlp(sleep_time: int = 3,
                           *,
                           debug: bool = False,
-                          **kwargs: Unpack[yt_dlp.YDLOpts]) -> yt_dlp.YoutubeDL:
+                          **kwargs: Unpack[yt_dlp._Params]) -> yt_dlp.YoutubeDL:
     """
     Get a configured ``YoutubeDL`` instance.
 
