@@ -19,7 +19,7 @@ keywords = ["command line", "yt-dlp"]
 license = "MIT"
 name = "yt-dlp-utils"
 readme = "README.md"
-version = "0.0.4"
+version = "0.0.5"
 
 [[project.authors]]
 email = "audvare@gmail.com"
