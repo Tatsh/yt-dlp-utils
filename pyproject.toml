@@ -78,7 +78,7 @@ warn_unreachable = true
 [tool.poetry.dependencies]
 python = ">=3.10,<3.14"
 requests = "^2.32.4"
-typing-extensions = "^4.14.0"
+typing-extensions = "^4.14.1"
 
 [tool.poetry.dependencies.yt-dlp]
 extras = ["default"]
