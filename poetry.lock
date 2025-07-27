@@ -2864,6 +2864,21 @@ files = [
 urllib3 = ">=2"
 
 [[package]]
+name = "types-yt-dlp"
+version = "2025.7.21.20250727"
+description = "Typing stubs for yt-dlp"
+optional = false
+python-versions = ">=3.9"
+groups = ["dev"]
+files = [
+    {file = "types_yt_dlp-2025.7.21.20250727-py3-none-any.whl", hash = "sha256:b9161b0fcad059fa59ae520db53d110c38fdd5d2e0f4dba1f8d036d2e3d4f752"},
+    {file = "types_yt_dlp-2025.7.21.20250727.tar.gz", hash = "sha256:d5ddd6bf7f542f326e9232099fbcbb8dfad3aa9f55025dc1a2602bfed11c046f"},
+]
+
+[package.dependencies]
+websockets = "*"
+
+[[package]]
 name = "typing-extensions"
 version = "4.14.1"
 description = "Backported and Experimental Type Hints for Python 3.9+"
@@ -2939,7 +2954,7 @@ version = "15.0.1"
 description = "An implementation of the WebSocket Protocol (RFC 6455 & 7692)"
 optional = false
 python-versions = ">=3.9"
-groups = ["main"]
+groups = ["main", "dev"]
 files = [
     {file = "websockets-15.0.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:d63efaa0cd96cf0c5fe4d581521d9fa87744540d4bc999ae6e08595a1014b45b"},
     {file = "websockets-15.0.1-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:ac60e3b188ec7574cb761b08d50fcedf9d77f1530352db4eef1707fe9dee7205"},
@@ -3061,21 +3076,6 @@ static-analysis = ["autopep8 (>=2.0,<3.0)", "ruff (>=0.11.0,<0.12.0)"]
 test = ["pytest (>=8.1,<9.0)", "pytest-rerunfailures (>=14.0,<15.0)"]
 
 [[package]]
-name = "yt-dlp-types"
-version = "0.0.17"
-description = "PEP 561 type stubs for yt-dlp."
-optional = false
-python-versions = "<3.14,>=3.10"
-groups = ["dev"]
-files = [
-    {file = "yt_dlp_types-0.0.17-py3-none-any.whl", hash = "sha256:f58253b95f304a477370b22cc76973ccc5fabdf4aba8e76c1029d916f8a9bd1f"},
-    {file = "yt_dlp_types-0.0.17.tar.gz", hash = "sha256:f70773cca5ecb291b91a22fc3b0a9765946b869ad0bfbc222b68ecc3d095bb0a"},
-]
-
-[package.dependencies]
-typing-extensions = ">=4.13.2,<5.0.0"
-
-[[package]]
 name = "zipp"
 version = "3.23.0"
 description = "Backport of pathlib-compatible object wrapper for zip files"
@@ -3098,4 +3098,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.14"
-content-hash = "52d02914f2220429b9ebceb89c0ae6ed11a8ec51cce388ffdcbf5024085e3ed9"
+content-hash = "efcf8e6d44d2ce5570219cc90dd350a75b50cdfe672454db76a2b9ab3a8ecc71"
