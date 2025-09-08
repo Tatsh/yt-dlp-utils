@@ -82,7 +82,7 @@ typing-extensions = "^4.15.0"
 
 [tool.poetry.dependencies.yt-dlp]
 extras = ["default"]
-version = "^2025.8.27"
+version = "^2025.9.5"
 
 [tool.poetry.group.dev]
 optional = true
