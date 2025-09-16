@@ -93,7 +93,7 @@ djlint = "^1.36.4"
 mypy = "^1.18.1"
 ruff = "^0.12.11"
 types-requests = "^2.32.4.20250913"
-types-yt-dlp = "^2025.8.27.20250829"
+types-yt-dlp = "^2025.9.5.20250907"
 yapf = "^0.43.0"
 
 [tool.poetry.group.docs]
