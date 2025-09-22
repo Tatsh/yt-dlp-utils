@@ -90,7 +90,7 @@ optional = true
 [tool.poetry.group.dev.dependencies]
 commitizen = "^4.9.1"
 djlint = "^1.36.4"
-mypy = "^1.18.1"
+mypy = "^1.18.2"
 ruff = "^0.13.0"
 types-requests = "^2.32.4.20250913"
 types-yt-dlp = "^2025.9.5.20250907"
