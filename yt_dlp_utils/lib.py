@@ -25,21 +25,22 @@ log = logging.getLogger(__name__)
 
 class YoutubeDLLogger(yt_dlp.cookies.YDLLogger):
     """Logger for yt-dlp."""
-    def debug(self, message: str) -> None:
+    def debug(self, message: str) -> None:  # noqa: PLR6301
         """Log a debug message."""
         if re.match(r'^\[download\]\s+[0-9\.]+%', message):
             return
         log.info('%s', re.sub(r'^\[(?:info|debug)\]\s+', '', message))
 
-    def info(self, message: str) -> None:
+    def info(self, message: str) -> None:  # noqa: PLR6301
         """Log an info message."""
         log.info('%s', re.sub(r'^\[info\]\s+', '', message))
 
-    def warning(self, message: str, *, only_once: bool = False) -> None:  # type: ignore[override]
+    def warning(  # type: ignore[override]  # noqa: PLR6301
+            self, message: str, *, only_once: bool = False) -> None:  # noqa: ARG002
         """Log a warning message."""
         log.warning('%s', re.sub(r'^\[warn(?:ing)?\]\s+', '', message))
 
-    def error(self, message: str) -> None:
+    def error(self, message: str) -> None:  # noqa: PLR6301
         """Log an error message."""
         log.error('%s', re.sub(r'^\[err(?:or)?\]\s+', '', message))
 

@@ -1,46 +1,29 @@
-(import 'defaults.libjsonnet') + {
-  // Project-specific
+local utils = import 'utils.libjsonnet';
+
+{
   description: 'Utilities for programmatic use of yt-dlp.',
   keywords: ['command line', 'yt-dlp'],
   project_name: 'yt-dlp-utils',
   version: '0.0.5',
-  citation+: {
-    'date-released': '2025-05-28',
-  },
   pyproject+: {
     tool+: {
       poetry+: {
         dependencies+: {
-          requests: '^2.32.3',
-          'yt-dlp': { extras: ['default'], version: '^2025.5.22' },
+          requests: utils.latestPypiPackageVersionCaret('requests'),
+          'yt-dlp': { extras: ['default'], version: utils.latestPypiPackageVersionCaret('yt-dlp') },
         },
         group+: {
           dev+: {
             dependencies+: {
-              'types-requests': '^2.32.0.20250328',
-              'yt-dlp-types': '^0',
+              'types-requests': utils.latestPypiPackageVersionCaret('types-requests'),
+              'yt-dlp-types': utils.latestPypiPackageVersionCaret('yt-dlp-types'),
             },
           },
         },
       },
     },
   },
-  // Common
-  authors: [
-    {
-      'family-names': 'Udvare',
-      'given-names': 'Andrew',
-      email: 'audvare@gmail.com',
-      name: '%s %s' % [self['given-names'], self['family-names']],
-    },
-  ],
-  local funding_name = '%s2' % std.asciiLower(self.github_username),
-  github_username: 'Tatsh',
-  github+: {
-    funding+: {
-      ko_fi: funding_name,
-      liberapay: funding_name,
-      patreon: funding_name,
-    },
+  copilot+: {
+    intro: 'yt-dlp-utils is a library to ease use of yt-dlp.',
   },
 }
