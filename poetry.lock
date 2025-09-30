@@ -2597,14 +2597,14 @@ test = ["pytest", "pytest-cov"]
 
 [[package]]
 name = "sphinx-datatables"
-version = "0.3.0"
+version = "0.3.1"
 description = "Searchable and sortable tables in Sphinx documentation"
 optional = false
 python-versions = ">=3.9"
 groups = ["docs"]
 files = [
-    {file = "sphinx_datatables-0.3.0-py3-none-any.whl", hash = "sha256:d1fda265c164625380b8b276b34d3cca56d146fb3522e7b2df34030d8e8cb2b0"},
-    {file = "sphinx_datatables-0.3.0.tar.gz", hash = "sha256:08d40ce8a5192192b877133bb31d8282038566bcb16a369c8786f3326f248fdc"},
+    {file = "sphinx_datatables-0.3.1-py3-none-any.whl", hash = "sha256:8a30746d1ea3d07c36263bc7182bfe1a27f0370ec7965d3e598164f305f0150e"},
+    {file = "sphinx_datatables-0.3.1.tar.gz", hash = "sha256:a1ac87c8119661a7b854342b1184a99a027d09f337363d7f639421a3c7d3e72d"},
 ]
 
 [package.dependencies]
@@ -3344,4 +3344,4 @@ typing-extensions = ">=4.14.1,<5.0.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.14"
-content-hash = "039111db1c9901f3adc997f5d185fcb8db7180bc918d46b9b231bed1c85415d8"
+content-hash = "4e8ecb3e1113bff485dd9c74fc04f94d571301a64be05bb11102ac9fbfbc071f"
