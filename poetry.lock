@@ -179,19 +179,19 @@ dev = ["backports.zoneinfo ; python_version < \"3.9\"", "freezegun (>=1.0,<2.0)"
 
 [[package]]
 name = "bascom"
-version = "0.0.1"
+version = "0.0.2"
 description = "Core library that my tools use."
 optional = false
 python-versions = "<3.14,>=3.10"
 groups = ["main"]
 files = [
-    {file = "bascom-0.0.1-py3-none-any.whl", hash = "sha256:59e203a6fe1722614d8f2730453723da8603b8fa67ddcb8b5d29ab1e92f38a70"},
-    {file = "bascom-0.0.1.tar.gz", hash = "sha256:038648afb821d5c8b64884e11f7ccb001b7a21e97c35cc3e013ad89be736d601"},
+    {file = "bascom-0.0.2-py3-none-any.whl", hash = "sha256:a631bee8d7507a35e9583386f6a540abb21f9596363a6b60af2a8d81bbc74001"},
+    {file = "bascom-0.0.2.tar.gz", hash = "sha256:7c29af4eb0136b5e900e9d655a361d6565c2ba9a2d40da31f6d6f40488763db9"},
 ]
 
 [package.dependencies]
 colorlog = ">=6.9.0,<7.0.0"
-typing-extensions = ">=4.14.0,<5.0.0"
+typing-extensions = ">=4.15.0,<5.0.0"
 
 [[package]]
 name = "beautifulsoup4"
@@ -3344,4 +3344,4 @@ typing-extensions = ">=4.14.1,<5.0.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.14"
-content-hash = "48afee931d2b0cea47cc9925b598d0ec655e77b88de17dcc1f9e2efa917b6ce4"
+content-hash = "8ee4c1783f213b455560293ff8e3b0fc3316ecd393b1390179b3b87ac6e9535f"
