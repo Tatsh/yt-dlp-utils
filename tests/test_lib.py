@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING, cast
 
 from yt_dlp_utils.constants import SHARED_HEADERS
 from yt_dlp_utils.lib import YoutubeDLLogger, get_configured_yt_dlp, setup_session
-import yt_dlp
 import yt_dlp.cookies
 
 if TYPE_CHECKING:
