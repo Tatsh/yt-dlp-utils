@@ -179,14 +179,14 @@ dev = ["backports.zoneinfo ; python_version < \"3.9\"", "freezegun (>=1.0,<2.0)"
 
 [[package]]
 name = "bascom"
-version = "0.0.2"
+version = "0.0.3"
 description = "Core library that my tools use."
 optional = false
-python-versions = "<3.14,>=3.10"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "bascom-0.0.2-py3-none-any.whl", hash = "sha256:a631bee8d7507a35e9583386f6a540abb21f9596363a6b60af2a8d81bbc74001"},
-    {file = "bascom-0.0.2.tar.gz", hash = "sha256:7c29af4eb0136b5e900e9d655a361d6565c2ba9a2d40da31f6d6f40488763db9"},
+    {file = "bascom-0.0.3-py3-none-any.whl", hash = "sha256:b458f8bb1c2af8f723e521c94f7683061ab71bd59c4c30b4dc3cb3d6f6410760"},
+    {file = "bascom-0.0.3.tar.gz", hash = "sha256:5d5965ee57bdb06b8b6cd5e2b4d71cf69b37db20eb4fe13f9e2d510d048cffc2"},
 ]
 
 [package.dependencies]
@@ -3344,4 +3344,4 @@ typing-extensions = ">=4.14.1,<5.0.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.14"
-content-hash = "8c2a394a2485fac3dd34a469bcd0bac28393204466b203c4a1c3395fbf681284"
+content-hash = "411e632f3b00b58b0d28b6e086730ec1f0c23f094174d8e312ccb61544832aef"

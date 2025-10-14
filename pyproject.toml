@@ -78,7 +78,7 @@ strict_optional = true
 warn_unreachable = true
 
 [tool.poetry.dependencies]
-bascom = "^0.0.2"
+bascom = "^0.0.3"
 python = ">=3.10,<3.14"
 requests = "^2.32.5"
 typing-extensions = "^4.15.0"
