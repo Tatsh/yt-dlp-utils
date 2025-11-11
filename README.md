@@ -4,7 +4,7 @@
 [![PyPI - Version](https://img.shields.io/pypi/v/yt-dlp-utils)](https://pypi.org/project/yt-dlp-utils/)
 [![GitHub tag (with filter)](https://img.shields.io/github/v/tag/Tatsh/yt-dlp-utils)](https://github.com/Tatsh/yt-dlp-utils/tags)
 [![License](https://img.shields.io/github/license/Tatsh/yt-dlp-utils)](https://github.com/Tatsh/yt-dlp-utils/blob/master/LICENSE.txt)
-[![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/yt-dlp-utils/v0.0.5/master)](https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.5...master)
+[![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/yt-dlp-utils/v0.0.6/master)](https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.6...master)
 [![CodeQL](https://github.com/Tatsh/yt-dlp-utils/actions/workflows/codeql.yml/badge.svg)](https://github.com/Tatsh/yt-dlp-utils/actions/workflows/codeql.yml)
 [![QA](https://github.com/Tatsh/yt-dlp-utils/actions/workflows/qa.yml/badge.svg)](https://github.com/Tatsh/yt-dlp-utils/actions/workflows/qa.yml)
 [![Tests](https://github.com/Tatsh/yt-dlp-utils/actions/workflows/tests.yml/badge.svg)](https://github.com/Tatsh/yt-dlp-utils/actions/workflows/tests.yml)
