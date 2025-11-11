@@ -9,6 +9,16 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.0.6] - 2025-10-11
+
+### Changed
+
+- Use trusted publishing.
+
+### Fixed
+
+- Python upper version requirement.
+
 ## [0.0.5] - 2025-06-08
 
 ### Changed
@@ -25,7 +35,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 First version.
 
-[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.5...HEAD
+[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.6...HEAD
+[0.0.6]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.3...v0.0.4
 [0.0.1]: https://github.com/Tatsh/yt-dlp-utils/releases/tag/v0.0.1
