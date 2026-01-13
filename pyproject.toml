@@ -91,7 +91,7 @@ version = "^2025.12.8"
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-commitizen = "^4.11.0"
+commitizen = "^4.11.2"
 cz-path = "^0.0.4"
 djlint = "^1.36.4"
 mypy = "^1.19.1"
