@@ -112,7 +112,7 @@ numpydoc = "^1.10.0"
 restructuredtext-lint = "^2.0.2"
 sphinx-datatables = "^0.5.0"
 sphinx-immaterial = "^0.13.8"
-tomlkit = "^0.13.3"
+tomlkit = "^0.14.0"
 
 [tool.poetry.group.docs.dependencies.enum-tools]
 extras = ["sphinx"]
