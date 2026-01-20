@@ -660,14 +660,14 @@ markers = {docs = "sys_platform == \"win32\"", tests = "sys_platform == \"win32\
 
 [[package]]
 name = "commitizen"
-version = "4.11.2"
+version = "4.12.0"
 description = "Python commitizen client tool"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["dev"]
 files = [
-    {file = "commitizen-4.11.2-py3-none-any.whl", hash = "sha256:68220c251953fe269e51e1d66ce7ef379e94042c86b6163473f13f38742624d9"},
-    {file = "commitizen-4.11.2.tar.gz", hash = "sha256:718a5a2a1be7c8fb1fecd3cb8da57b22fb6a2f54b7897e4d69d3adacf9c3bdeb"},
+    {file = "commitizen-4.12.0-py3-none-any.whl", hash = "sha256:9cb4413b32ff95cf1e9e029499574ef543e9fd3e50e6dcc70cf9807dc4c3fb4f"},
+    {file = "commitizen-4.12.0.tar.gz", hash = "sha256:c273aa679690b6887db7724a11f7adc8f18414740c6a350d00367d17290d8048"},
 ]
 
 [package.dependencies]
@@ -1107,7 +1107,7 @@ version = "3.20.3"
 description = "A platform independent file lock."
 optional = false
 python-versions = ">=3.10"
-groups = ["dev", "docs"]
+groups = ["docs"]
 files = [
     {file = "filelock-3.20.3-py3-none-any.whl", hash = "sha256:4b0dda527ee31078689fc205ec4f1c1bf7d56cf88b6dc9426c4f230e46c2dce1"},
     {file = "filelock-3.20.3.tar.gz", hash = "sha256:18c57ee915c7ec61cff0ecf7f0f869936c7c30191bb0cf406f1341778d0834e1"},
@@ -3502,4 +3502,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "e6265e62aa3c9a6123bd104fe8617be307433e8460733e7d8864608d142ac7a5"
+content-hash = "e348ab1b51be29847fa5b8c037096ceb7988346743c3833ff719f5136c76f99a"
