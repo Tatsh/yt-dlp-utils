@@ -3155,14 +3155,14 @@ urllib3 = ">=2"
 
 [[package]]
 name = "types-yt-dlp"
-version = "2025.12.8.20251210"
+version = "2025.12.8.20260116"
 description = "Typing stubs for yt-dlp"
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "types_yt_dlp-2025.12.8.20251210-py3-none-any.whl", hash = "sha256:5d8e37032c6dffa3651b1a1706a7eb541ffe5fb187778bbd817cb055d6ac0e70"},
-    {file = "types_yt_dlp-2025.12.8.20251210.tar.gz", hash = "sha256:7eda94d9ff745049aa6b624f2bc91b84db5d07141bb3ba7c2223ab9daafd2336"},
+    {file = "types_yt_dlp-2025.12.8.20260116-py3-none-any.whl", hash = "sha256:b4515032495675350bee7a261b2096ff37ad7608254ffbff1873c66efb529598"},
+    {file = "types_yt_dlp-2025.12.8.20260116.tar.gz", hash = "sha256:4a8494f97d749ebb25b3aa6e3932e8dd5d0aa072897ccef8702caa367e4c012b"},
 ]
 
 [package.dependencies]
@@ -3502,4 +3502,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "484ffdebb62a64060c4737a8799e3c85c61da6fac77137d98a15dd019e99cb63"
+content-hash = "e91463c24a2f3441a982993f5b842627984792a622fcf9da19c40be172d6e81f"
