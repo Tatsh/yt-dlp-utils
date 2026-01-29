@@ -179,10 +179,10 @@ async def test_async_youtube_dl_extract_info(mocker: MockerFixture) -> None:
     assert result == {'id': 'test123', 'title': 'Test Video'}
     mock_ydl.extract_info.assert_called_once_with('https://example.com/video',
                                                   download=False,
-                                                  ie_key=None,
                                                   extra_info={},
-                                                  process=True,
-                                                  force_generic_extractor=False)
+                                                  force_generic_extractor=False,
+                                                  ie_key=None,
+                                                  process=True)
 
 
 @pytest.mark.asyncio

@@ -75,10 +75,10 @@ class AsyncYoutubeDL:
         result = await asyncio.to_thread(self.ydl.extract_info,
                                          url,
                                          download=download,
-                                         ie_key=ie_key,
                                          extra_info=extra_info,
-                                         process=process,
-                                         force_generic_extractor=force_generic_extractor)
+                                         force_generic_extractor=force_generic_extractor,
+                                         ie_key=ie_key,
+                                         process=process)
         return dict(result) if result is not None else None
 
     async def download(self, urls: Iterable[str]) -> int:
@@ -207,6 +207,6 @@ async def setup_session(browser: str,
         session.cookie_jar.update_cookies(cookies)
     if setup_retry:
         return RetryClient(client_session=session,
-                           retry_options=ExponentialRetry(statuses=set(status_forcelist),
-                                                          factor=backoff_factor))
+                           retry_options=ExponentialRetry(factor=backoff_factor,
+                                                          statuses=set(status_forcelist)))
     return session
