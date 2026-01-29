@@ -88,11 +88,15 @@ extras = ["default"]
 version = "^2025.12.8"
 
 [tool.poetry.extras]
-asyncio = ["aiohttp"]
+asyncio = ["aiohttp", "aiohttp-retry"]
 
 [tool.poetry.dependencies.aiohttp]
 optional = true
 version = "^3.11.14"
+
+[tool.poetry.dependencies.aiohttp-retry]
+optional = true
+version = "^2.9.1"
 
 [tool.poetry.group.dev]
 optional = true
@@ -138,6 +142,7 @@ optional = true
 
 [tool.poetry.group.tests.dependencies]
 aiohttp = "^3.11.14"
+aiohttp-retry = "^2.9.1"
 mock = "^5.2.0"
 pytest = "^9.0.2"
 pytest-asyncio = "^1.0.0"

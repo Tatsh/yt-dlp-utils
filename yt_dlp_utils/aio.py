@@ -6,16 +6,17 @@ import asyncio
 import logging
 import sys
 
+from aiohttp_retry import ExponentialRetry, RetryClient
 from typing_extensions import Self, Unpack
 from yt_dlp.cookies import extract_cookies_from_browser
 import aiohttp
 import yt_dlp
 
-from .constants import SHARED_HEADERS
+from .constants import DEFAULT_RETRY_BACKOFF_FACTOR, DEFAULT_RETRY_STATUS_FORCELIST, SHARED_HEADERS
 from .lib import YoutubeDLLogger
 
 if TYPE_CHECKING:
-    from collections.abc import Iterable, Mapping
+    from collections.abc import Collection, Iterable, Mapping
 
 __all__ = ('AsyncYoutubeDL', 'get_configured_yt_dlp', 'setup_session')
 
@@ -23,7 +24,8 @@ log = logging.getLogger(__name__)
 
 
 class AsyncYoutubeDL:
-    """Async wrapper around ``yt_dlp.YoutubeDL``.
+    """
+    Async wrapper around ``yt_dlp.YoutubeDL``.
 
     This class wraps a synchronous ``YoutubeDL`` instance and provides async methods
     that run blocking operations in a thread executor.
@@ -36,12 +38,8 @@ class AsyncYoutubeDL:
         The wrapped ``YoutubeDL`` instance.
     """
     def __init__(self, ydl: yt_dlp.YoutubeDL) -> None:
-        self._ydl = ydl
-
-    @property
-    def ydl(self) -> yt_dlp.YoutubeDL:
-        """Return the wrapped ``YoutubeDL`` instance."""
-        return self._ydl
+        self.ydl = ydl
+        """The wrapped ``YoutubeDL`` instance."""
 
     async def extract_info(self,
                            url: str,
@@ -74,7 +72,7 @@ class AsyncYoutubeDL:
             The extracted info, or None if extraction failed.
         """
         extra_info = dict(extra_info) if extra_info else {}
-        result = await asyncio.to_thread(self._ydl.extract_info,
+        result = await asyncio.to_thread(self.ydl.extract_info,
                                          url,
                                          download=download,
                                          ie_key=ie_key,
@@ -96,7 +94,7 @@ class AsyncYoutubeDL:
         int
             The return code (0 for success).
         """
-        return cast('int', await asyncio.to_thread(self._ydl.download, list(urls)))
+        return cast('int', await asyncio.to_thread(self.ydl.download, list(urls)))
 
     async def __aenter__(self) -> Self:
         """Enter the async context manager."""
@@ -104,7 +102,7 @@ class AsyncYoutubeDL:
 
     async def __aexit__(self, *args: object) -> None:
         """Exit the async context manager."""
-        self._ydl.__exit__(*args)
+        self.ydl.__exit__(*args)
 
 
 def get_configured_yt_dlp(sleep_time: int = 3,
@@ -148,9 +146,13 @@ def get_configured_yt_dlp(sleep_time: int = 3,
 async def setup_session(browser: str,
                         profile: str,
                         add_headers: Mapping[str, str] | None = None,
+                        backoff_factor: float = DEFAULT_RETRY_BACKOFF_FACTOR,
                         domains: Iterable[str] | None = None,
                         headers: Mapping[str, str] | None = None,
-                        session: aiohttp.ClientSession | None = None) -> aiohttp.ClientSession:
+                        session: aiohttp.ClientSession | None = None,
+                        status_forcelist: Collection[int] = DEFAULT_RETRY_STATUS_FORCELIST,
+                        *,
+                        setup_retry: bool = False) -> aiohttp.ClientSession | RetryClient:
     """
     Create or modify an aiohttp :py:class:`aiohttp.ClientSession` with cookies from the browser.
 
@@ -162,23 +164,26 @@ async def setup_session(browser: str,
         The profile to extract cookies from.
     add_headers : Mapping[str, str]
         Additional headers to add to the session.
+    backoff_factor : float
+        The backoff factor to use for the retry mechanism.
     domains : Iterable[str]
         Filter the cookies to only those that match the specified domains.
     headers : Mapping[str, str]
         The headers to use for the session. If not specified, a default set will be used.
     session : aiohttp.ClientSession | None
         An existing session to modify. If not specified, a new session will be created.
+    status_forcelist : Collection[int]
+        The status codes to retry on.
+    setup_retry : bool
+        Whether to set up a retry mechanism for the session.
 
     Returns
     -------
-    aiohttp.ClientSession
-        An aiohttp session.
+    aiohttp.ClientSession | RetryClient
+        An aiohttp session, or a RetryClient if ``setup_retry`` is True.
 
     Notes
     -----
-    Unlike the synchronous version, retry logic should be handled via middleware or
-    by wrapping requests. The ``aiohttp-retry`` package can be used for this purpose.
-
     The session should be used as an async context manager or closed explicitly when done.
     """
     final_headers = dict(headers or SHARED_HEADERS)
@@ -196,7 +201,12 @@ async def setup_session(browser: str,
                 if isinstance(cookie.value, str):
                     cookies[cookie.name] = cookie.value
     if session is None:
-        return aiohttp.ClientSession(headers=final_headers, cookies=cookies)
-    session.headers.update(final_headers)
-    session.cookie_jar.update_cookies(cookies)
+        session = aiohttp.ClientSession(headers=final_headers, cookies=cookies)
+    else:
+        session.headers.update(final_headers)
+        session.cookie_jar.update_cookies(cookies)
+    if setup_retry:
+        return RetryClient(client_session=session,
+                           retry_options=ExponentialRetry(statuses=set(status_forcelist),
+                                                          factor=backoff_factor))
     return session

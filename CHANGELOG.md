@@ -14,6 +14,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Async API module `yt_dlp_utils.aio` with `AsyncYoutubeDL`, `get_configured_yt_dlp()`, and
   `setup_session()`.
 - Optional `asyncio` extra for async support (`pip install yt-dlp-utils[asyncio]`).
+- Retry support in async `setup_session()` via `setup_retry` parameter (uses `aiohttp-retry`).
 
 ## [0.0.6] - 2025-10-11
 
