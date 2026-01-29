@@ -37,6 +37,8 @@ Utilities for programmatic use of yt-dlp.
 poetry add yt-dlp-utils
 ```
 
+To use the async API, install with the extra `aio`.
+
 ### Pip
 
 ```shell

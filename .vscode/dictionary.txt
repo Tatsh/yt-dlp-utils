@@ -1,7 +1,9 @@
+aiohttp
 asyncio
 autoclass
 autodoc
 autofunction
+automodule
 bsky
 codeowners
 commitizen
@@ -72,3 +74,4 @@ virtualenv
 wiswa
 yapf
 yapfignore
+yarl

@@ -83,6 +83,9 @@ yt-dlp-utils
 
 .. autofunction:: yt_dlp_utils.setup_session
 
+.. automodule:: yt_dlp_utils.aio
+   :members:
+
 .. autoclass:: yt_dlp_utils.YoutubeDLLogger
    :members:
 
