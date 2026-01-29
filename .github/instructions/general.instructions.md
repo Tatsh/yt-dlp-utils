@@ -12,7 +12,7 @@ yt-dlp-utils is a library to ease use of yt-dlp.
 - Use UTF-8 encoding for all files.
 - Use spaces instead of tabs for indentation.
 - Use British spelling in comments and docstrings.
-- Use American spelling for all identifiers and string literals, except in docstrings.
+- Use American spelling for all identifiers and string literals.
 - Never mention the spelling or other project conventions in comments or docstrings.
 - Use full sentences in comments and docstrings.
 - Use the Oxford comma in lists.
