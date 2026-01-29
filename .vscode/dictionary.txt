@@ -5,7 +5,6 @@ autodoc
 autofunction
 automodule
 bsky
-codeowners
 commitizen
 conftest
 coveragerc
@@ -26,7 +25,6 @@ forcelist
 foxundermoon
 genindex
 globaltoc
-hoverxref
 htmlcov
 intersphinx
 isort
@@ -74,4 +72,3 @@ virtualenv
 wiswa
 yapf
 yapfignore
-yarl

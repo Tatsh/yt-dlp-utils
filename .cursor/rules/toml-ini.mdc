@@ -1,6 +1,6 @@
 ---
 description: TOML and INI-like file guidelines
-globs: "**/*.cfg, **/*.conf, **/*.ini, **/*.toml"
+globs: '**/*.cfg, **/*.conf, **/*.ini, **/*.toml'
 alwaysApply: false
 ---
 

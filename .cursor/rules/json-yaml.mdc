@@ -1,6 +1,6 @@
 ---
 description: JSON and YAML guidelines
-globs: "**/*.cff, **/*.json, **/*.yaml, **/*.yml, **/.clang-format"
+globs: '**/*.cff, **/*.json, **/*.yaml, **/*.yml, **/.clang-format'
 alwaysApply: false
 ---
 
