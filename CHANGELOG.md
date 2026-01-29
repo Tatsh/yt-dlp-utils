@@ -16,7 +16,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Optional `asyncio` extra for async support (`pip install yt-dlp-utils[asyncio]`).
 - Retry support in async `setup_session()` via `setup_retry` parameter (uses `aiohttp-retry`).
 
-## [0.0.6] - 2025-10-11
+## [0.0.6] - 2025-11-10
 
 ### Changed
 
@@ -36,9 +36,21 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- In `utils.get_configured_yt_dlp()`, accept keyword arguments to pass to `YoutubeDL`.
+- In `get_configured_yt_dlp()`, accept keyword arguments to pass to `YoutubeDL`.
 
-## [0.0.1] - 2025-00-00
+## [0.0.3] - 2025-04-27
+
+### Fixed
+
+- Add back `domains` parameter and fix setting cookies to session jar in `setup_session()`.
+
+## [0.0.2] - 2025-04-26
+
+### Fixed
+
+- In `setup_session()`, assign all cookies to the requests.Session jar.
+
+## [0.0.1] - 2025-04-25
 
 First version.
 
@@ -46,4 +58,6 @@ First version.
 [0.0.6]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.3...v0.0.4
+[0.0.3]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.2...v0.0.3
+[0.0.2]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/Tatsh/yt-dlp-utils/releases/tag/v0.0.1
