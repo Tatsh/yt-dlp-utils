@@ -1,6 +1,6 @@
 ---
 description: Markdown guidelines
-globs: "**/*.md"
+globs: '**/*.md'
 alwaysApply: false
 ---
 
