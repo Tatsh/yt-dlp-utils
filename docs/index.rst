@@ -19,8 +19,8 @@ yt-dlp-utils
       :target: https://github.com/Tatsh/yt-dlp-utils/blob/master/LICENSE.txt
       :alt: License
 
-   .. image:: https://img.shields.io/github/commits-since/Tatsh/yt-dlp-utils/v0.0.6/master
-      :target: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.6...master
+   .. image:: https://img.shields.io/github/commits-since/Tatsh/yt-dlp-utils/v0.0.7/master
+      :target: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.7...master
       :alt: GitHub commits since latest release (by SemVer including pre-releases)
 
    .. image:: https://github.com/Tatsh/yt-dlp-utils/actions/workflows/codeql.yml/badge.svg
