@@ -9,8 +9,19 @@ local utils = import 'utils.libjsonnet';
     tool+: {
       poetry+: {
         dependencies+: {
+          aiohttp: {
+            optional: true,
+            version: utils.latestPypiPackageVersionCaret('aiohttp'),
+          },
+          'aiohttp-retry': {
+            optional: true,
+            version: utils.latestPypiPackageVersionCaret('aiohttp-retry'),
+          },
           requests: utils.latestPypiPackageVersionCaret('requests'),
           'yt-dlp': { extras: ['default'], version: utils.latestPypiPackageVersionCaret('yt-dlp') },
+        },
+        extras: {
+          asyncio: ['aiohttp', 'aiohttp-retry'],
         },
         group+: {
           dev+: {
@@ -19,6 +30,20 @@ local utils = import 'utils.libjsonnet';
               'types-yt-dlp': utils.latestPypiPackageVersionCaret('types-yt-dlp'),
             },
           },
+          tests+: {
+            dependencies+: {
+              aiohttp: utils.latestPypiPackageVersionCaret('aiohttp'),
+              'aiohttp-retry': utils.latestPypiPackageVersionCaret('aiohttp-retry'),
+              'pytest-asyncio': utils.latestPypiPackageVersionCaret('pytest-asyncio'),
+              yarl: utils.latestPypiPackageVersionCaret('yarl'),
+            },
+          },
+        },
+      },
+      pytest+: {
+        ini_options+: {
+          asyncio_default_fixture_loop_scope: 'function',
+          asyncio_mode: 'auto',
         },
       },
     },

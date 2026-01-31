@@ -72,3 +72,4 @@ virtualenv
 wiswa
 yapf
 yapfignore
+yarl
