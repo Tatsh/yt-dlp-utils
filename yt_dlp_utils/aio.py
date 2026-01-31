@@ -1,7 +1,7 @@
 """Async utilities."""
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING, Any
 import asyncio
 import logging
 import sys
@@ -94,7 +94,7 @@ class AsyncYoutubeDL:
         int
             The return code (0 for success).
         """
-        return cast('int', await asyncio.to_thread(self.ydl.download, list(urls)))
+        return await asyncio.to_thread(self.ydl.download, list(urls))
 
     async def __aenter__(self) -> Self:
         """Enter the async context manager."""

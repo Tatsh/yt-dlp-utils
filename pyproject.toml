@@ -85,7 +85,7 @@ typing-extensions = "^4.15.0"
 
 [tool.poetry.dependencies.yt-dlp]
 extras = ["default"]
-version = "^2025.12.8"
+version = "^2026.1.29"
 
 [tool.poetry.group.dev]
 optional = true
@@ -97,7 +97,7 @@ djlint = "^1.36.4"
 mypy = "^1.19.1"
 ruff = "^0.14.14"
 types-requests = "^2.32.4.20260107"
-types-yt-dlp = "^2025.12.8.20260116"
+types-yt-dlp = "^2025.12.8.20260130"
 yapf = "^0.43.0"
 
 [tool.poetry.group.docs]
