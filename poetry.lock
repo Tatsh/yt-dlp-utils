@@ -3422,13 +3422,13 @@ docs = ["sphinx-copybutton", "sphinx-toolbox"]
 
 [[package]]
 name = "sphinx-immaterial"
-version = "0.13.8"
+version = "0.13.9"
 description = "Adaptation of mkdocs-material theme for the Sphinx documentation system"
 optional = false
 python-versions = ">=3.10"
 groups = ["docs"]
 files = [
-    {file = "sphinx_immaterial-0.13.8-py3-none-any.whl", hash = "sha256:fd92cc9e9f65e1f3a28a9f4f6886250a97dc65da41ece67f562bc1c00e89be6f"},
+    {file = "sphinx_immaterial-0.13.9-py3-none-any.whl", hash = "sha256:5ea92d2ddc6befcd0fedbd3e6766ea4746e94d9a8a5cc0ab092a946e1fde4254"},
 ]
 
 [package.dependencies]
@@ -4331,4 +4331,4 @@ asyncio = ["aiohttp", "aiohttp-retry"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "1993ccbf3bd55cfc7a2e6f6eb6530b7914ba64a0819314c4198a9a4ee4f08368"
+content-hash = "19596db8dad68251d28f9d86d602d498253ca0e4001300b53fb4c769b830ddd9"
