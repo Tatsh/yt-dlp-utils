@@ -9,6 +9,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.0.8] - 2026-02-24
+
+### Changed
+
+- Updated yt-dlp dependency.
+
 ## [0.0.7] - 2026-01-31
 
 ### Added
@@ -56,7 +62,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 First version.
 
-[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.7...HEAD
+[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.8...HEAD
+[0.0.8]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.4...v0.0.5
