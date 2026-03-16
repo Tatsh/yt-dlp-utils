@@ -3853,14 +3853,14 @@ urllib3 = ">=2"
 
 [[package]]
 name = "types-yt-dlp"
-version = "2026.3.3.20260304"
+version = "2026.3.13.20260314"
 description = "Typing stubs for yt-dlp"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "types_yt_dlp-2026.3.3.20260304-py3-none-any.whl", hash = "sha256:8bdd3f5cf32d9a748c3946b792b3d1530497f58fc5d11b654fe52430d01a6d28"},
-    {file = "types_yt_dlp-2026.3.3.20260304.tar.gz", hash = "sha256:f1f3ea06f072dd744309c4a78027a09acf1c5a2329f9c9197e344d78eecfd28c"},
+    {file = "types_yt_dlp-2026.3.13.20260314-py3-none-any.whl", hash = "sha256:f1b364ae9edf8e9d1a4e1a0a1dc3123d21d043a477a54fb6996927e36fca810a"},
+    {file = "types_yt_dlp-2026.3.13.20260314.tar.gz", hash = "sha256:b6dd5290f569b549644e930d045956c16322c36dd30f41b9699217c4cb27830b"},
 ]
 
 [package.dependencies]
@@ -4307,4 +4307,4 @@ asyncio = ["aiohttp", "aiohttp-retry"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "c9cbf73c39a5ef740f5659526d3bcd3eb38d03927f8898dc650a938aee4e74e9"
+content-hash = "b1100e135ad32836ff51051bfcf37eb9b872b70f5bce6c281c8757ea1a975c03"
