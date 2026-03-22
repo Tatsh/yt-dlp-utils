@@ -31,13 +31,20 @@ checks, bump the version, and push.
 
 7. **Record the current HEAD** before bumping: `git rev-parse HEAD` (save this as `PRE_BUMP_REF`).
 
-8. **Run `cz bump --gpg-sign --increment {MAJOR,MINOR,PATCH}`** with the appropriate increment.
-   Never pass `--changelog` or `-ch` to `cz bump`. If `cz bump` fails for any reason:
-   1. **Restore the repository** to the pre-bump state: `git reset --hard $PRE_BUMP_REF` and
-      `git tag -d` any tags that were created.
+8. **Run `cz bump --files-only --increment {MAJOR,MINOR,PATCH}`** with the appropriate increment.
+   This only updates version strings in files without committing or tagging. Never pass `--changelog`
+   or `-ch` to `cz bump`. If `cz bump` fails for any reason:
+   1. **Restore the repository** to the pre-bump state: `git checkout -- .`
    2. **Stop work immediately and alert the user.** Do not attempt to work around the failure.
 
-9. **Push the commit and tags.** Run `git push && git push --tags`.
+9. **Run `uv sync`** to update `uv.lock` with the new version.
+
+10. **Commit the version bump.** Stage all changed files and commit with
+    `git commit -S -s -m 'bump: vOLD → vNEW'` (replace OLD/NEW with actual versions).
+
+11. **Create a signed tag.** Run `git tag -s vNEW -m 'vNEW'` (replace NEW with the new version).
+
+12. **Push the commit and tag.** Run `git push && git push --tags`.
 
 ## Rules
 
