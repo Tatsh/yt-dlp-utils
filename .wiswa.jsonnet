@@ -1,6 +1,7 @@
 local utils = import 'utils.libjsonnet';
 
 {
+  uses_user_defaults: true,
   description: 'Utilities for programmatic use of yt-dlp.',
   keywords: ['command line', 'yt-dlp'],
   project_name: 'yt-dlp-utils',
@@ -47,8 +48,5 @@ local utils = import 'utils.libjsonnet';
         },
       },
     },
-  },
-  copilot+: {
-    intro: 'yt-dlp-utils is a library to ease use of yt-dlp.',
   },
 }

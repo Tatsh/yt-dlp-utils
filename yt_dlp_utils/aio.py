@@ -97,7 +97,13 @@ class AsyncYoutubeDL:
         return await asyncio.to_thread(self.ydl.download, list(urls))
 
     async def __aenter__(self) -> Self:
-        """Enter the async context manager."""
+        """Enter the async context manager.
+
+        Returns
+        -------
+        Self
+            This instance for use in ``async with`` blocks.
+        """
         return self
 
     async def __aexit__(self, *args: object) -> None:
