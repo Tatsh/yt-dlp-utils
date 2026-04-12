@@ -9,11 +9,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-04-12
+
 ### Changed
 
 - **Breaking:** async `setup_session()` in `yt_dlp_utils.aio` now returns a niquests
   `AsyncSession` and uses `urllib3_future.util.retry.Retry` for `setup_retry` instead of aiohttp /
-  aiohttp-retry.
+  aiohttp-retry. The `asyncio` extra now installs `niquests` and `urllib3-future` instead of
+  `aiohttp` and `aiohttp-retry`.
 
 ## [0.0.8] - 2026-02-24
 
@@ -68,7 +71,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 First version.
 
-[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.8...HEAD
+[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.8...v0.1.0
 [0.0.8]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.5...v0.0.6

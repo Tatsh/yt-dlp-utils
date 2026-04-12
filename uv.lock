@@ -9,7 +9,7 @@ resolution-markers = [
 ]
 
 [options]
-exclude-newer = "2026-04-05T09:37:29.251376983Z"
+exclude-newer = "2026-04-05T09:46:10.935212801Z"
 exclude-newer-span = "P1W"
 
 [[package]]
@@ -2855,7 +2855,7 @@ wheels = [
 
 [[package]]
 name = "yt-dlp-utils"
-version = "0.0.8"
+version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "requests" },

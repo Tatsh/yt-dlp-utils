@@ -56,7 +56,7 @@ license = "MIT"
 name = "yt-dlp-utils"
 readme = "README.md"
 requires-python = ">=3.10,<4.0"
-version = "0.0.8"
+version = "0.1.0"
 
 [[project.authors]]
 email = "audvare@gmail.com"
