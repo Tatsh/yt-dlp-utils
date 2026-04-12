@@ -1,5 +1,4 @@
 aiohttp
-Ångström
 appimage
 asyncio
 autoclass
@@ -55,6 +54,7 @@ monkeypatch
 myproject
 mypy
 namedtuples
+niquests
 norecursedirs
 npmjs
 numpy
@@ -93,6 +93,8 @@ tomllib
 tryfirst
 ubyte
 udvare
+urllib
+urllib3
 vendored
 venv
 virtualenv
@@ -100,5 +102,5 @@ wiswa
 wiswa's
 yapf
 yapfignore
-yarl
 yarnrc
+Ångström

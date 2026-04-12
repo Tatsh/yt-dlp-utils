@@ -9,6 +9,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- **Breaking:** async `setup_session()` in `yt_dlp_utils.aio` now returns a niquests
+  `AsyncSession` and uses `urllib3_future.util.retry.Retry` for `setup_retry` instead of aiohttp /
+  aiohttp-retry.
+
 ## [0.0.8] - 2026-02-24
 
 ### Changed

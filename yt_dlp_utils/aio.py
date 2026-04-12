@@ -6,10 +6,11 @@ import asyncio
 import logging
 import sys
 
-from aiohttp_retry import ExponentialRetry, RetryClient
+from niquests import AsyncSession
+from niquests.cookies import cookiejar_from_dict
 from typing_extensions import Self, Unpack
+from urllib3_future.util.retry import Retry
 from yt_dlp.cookies import extract_cookies_from_browser
-import aiohttp
 import yt_dlp
 
 from .constants import DEFAULT_RETRY_BACKOFF_FACTOR, DEFAULT_RETRY_STATUS_FORCELIST, SHARED_HEADERS
@@ -155,12 +156,12 @@ async def setup_session(browser: str,
                         backoff_factor: float = DEFAULT_RETRY_BACKOFF_FACTOR,
                         domains: Iterable[str] | None = None,
                         headers: Mapping[str, str] | None = None,
-                        session: aiohttp.ClientSession | None = None,
+                        session: AsyncSession | None = None,
                         status_forcelist: Collection[int] = DEFAULT_RETRY_STATUS_FORCELIST,
                         *,
-                        setup_retry: bool = False) -> aiohttp.ClientSession | RetryClient:
+                        setup_retry: bool = False) -> AsyncSession:
     """
-    Create or modify an aiohttp :py:class:`aiohttp.ClientSession` with cookies from the browser.
+    Create or modify a niquests :py:class:`~niquests.AsyncSession` with cookies from the browser.
 
     Parameters
     ----------
@@ -176,21 +177,22 @@ async def setup_session(browser: str,
         Filter the cookies to only those that match the specified domains.
     headers : Mapping[str, str]
         The headers to use for the session. If not specified, a default set will be used.
-    session : aiohttp.ClientSession | None
+    session : AsyncSession | None
         An existing session to modify. If not specified, a new session will be created.
     status_forcelist : Collection[int]
         The status codes to retry on.
     setup_retry : bool
-        Whether to set up a retry mechanism for the session.
+        Whether to configure automatic retries (urllib3_future
+        :py:class:`~urllib3_future.util.retry.Retry`).
 
     Returns
     -------
-    aiohttp.ClientSession | RetryClient
-        An aiohttp session, or a RetryClient if ``setup_retry`` is True.
+    AsyncSession
+        A niquests async session.
 
     Notes
     -----
-    The session should be used as an async context manager or closed explicitly when done.
+    The session should be closed with ``await session.close()`` when done.
     """
     final_headers = dict(headers or SHARED_HEADERS)
     if add_headers:
@@ -206,13 +208,19 @@ async def setup_session(browser: str,
             for cookie in extracted.get_cookies_for_url(f'https://{domain}'):
                 if isinstance(cookie.value, str):
                     cookies[cookie.name] = cookie.value
+
+    retries: Retry | int = 0
+    if setup_retry:
+        retries = Retry(total=10,
+                        backoff_factor=backoff_factor,
+                        status_forcelist=set(status_forcelist))
+
     if session is None:
-        session = aiohttp.ClientSession(headers=final_headers, cookies=cookies)
+        session = AsyncSession(headers=final_headers, retries=retries)
     else:
         session.headers.update(final_headers)
-        session.cookie_jar.update_cookies(cookies)
-    if setup_retry:
-        return RetryClient(client_session=session,
-                           retry_options=ExponentialRetry(factor=backoff_factor,
-                                                          statuses=set(status_forcelist)))
+        if setup_retry:
+            session.retries = retries
+
+    session.cookies = cookiejar_from_dict(cookies, cookiejar=session.cookies)
     return session

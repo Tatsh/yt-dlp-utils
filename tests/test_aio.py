@@ -1,16 +1,17 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
-from aiohttp_retry import RetryClient
-from yarl import URL
+from niquests import AsyncSession
+from urllib3_future.util.retry import Retry
 from yt_dlp_utils.aio import AsyncYoutubeDL, get_configured_yt_dlp, setup_session
 from yt_dlp_utils.constants import SHARED_HEADERS
-import aiohttp
 import pytest
+import yt_dlp
 import yt_dlp.cookies
 
 if TYPE_CHECKING:
+    from niquests.cookies import RequestsCookieJar
     from pytest_mock import MockerFixture
 
 
@@ -25,9 +26,9 @@ async def test_setup_session_no_domains(mocker: MockerFixture) -> None:
     session = await setup_session(browser='chrome', profile='default')
 
     try:
-        assert isinstance(session, aiohttp.ClientSession)
+        assert isinstance(session, AsyncSession)
         assert session.headers['user-agent'] == SHARED_HEADERS['user-agent']
-        assert 'cookie1' in session.cookie_jar.filter_cookies(URL('https://example.com'))
+        assert 'cookie1' in session.cookies
     finally:
         await session.close()
 
@@ -43,9 +44,11 @@ async def test_setup_session_with_domains(mocker: MockerFixture) -> None:
     session = await setup_session(browser='chrome', profile='default', domains=['example.com'])
 
     try:
-        assert isinstance(session, aiohttp.ClientSession)
+        assert isinstance(session, AsyncSession)
         mock_jar.get_cookies_for_url.assert_called_once_with('https://example.com')
         assert session.headers['user-agent'] == SHARED_HEADERS['user-agent']
+        jar = cast('RequestsCookieJar', session.cookies)
+        assert jar.get_dict().get('cookie1') == 'value1'
     finally:
         await session.close()
 
@@ -63,10 +66,9 @@ async def test_setup_session_no_domains_non_string_cookie(mocker: MockerFixture)
     session = await setup_session(browser='chrome', profile='default')
 
     try:
-        assert isinstance(session, aiohttp.ClientSession)
-        cookies = session.cookie_jar.filter_cookies(URL('https://example.com'))
-        assert 'cookie1' in cookies
-        assert 'cookie2' not in cookies
+        assert isinstance(session, AsyncSession)
+        assert 'cookie1' in session.cookies
+        assert 'cookie2' not in session.cookies
     finally:
         await session.close()
 
@@ -84,10 +86,10 @@ async def test_setup_session_with_domains_non_string_cookie(mocker: MockerFixtur
     session = await setup_session(browser='chrome', profile='default', domains=['example.com'])
 
     try:
-        assert isinstance(session, aiohttp.ClientSession)
-        cookies = session.cookie_jar.filter_cookies(URL('https://example.com'))
-        assert 'cookie1' in cookies
-        assert 'cookie2' not in cookies
+        assert isinstance(session, AsyncSession)
+        jar = cast('RequestsCookieJar', session.cookies)
+        assert jar.get_dict().get('cookie1') == 'value1'
+        assert 'cookie2' not in session.cookies
     finally:
         await session.close()
 
@@ -104,7 +106,7 @@ async def test_setup_session_with_custom_headers(mocker: MockerFixture) -> None:
                                   add_headers={'Another-Header': 'AnotherValue'})
 
     try:
-        assert isinstance(session, aiohttp.ClientSession)
+        assert isinstance(session, AsyncSession)
         assert session.headers['Custom-Header'] == 'CustomValue'
         assert session.headers['Another-Header'] == 'AnotherValue'
     finally:
@@ -117,10 +119,10 @@ async def test_setup_session_with_existing_session(mocker: MockerFixture) -> Non
     mock_jar.__iter__ = mocker.Mock(return_value=iter([]))
     mocker.patch('yt_dlp_utils.aio.extract_cookies_from_browser', return_value=mock_jar)
 
-    existing_session = aiohttp.ClientSession()
+    existing_session = AsyncSession()
     try:
         session = await setup_session(browser='chrome', profile='default', session=existing_session)
-        assert isinstance(session, aiohttp.ClientSession)
+        assert isinstance(session, AsyncSession)
         assert session is existing_session
         assert session.headers['user-agent'] == SHARED_HEADERS['user-agent']
     finally:
@@ -217,6 +219,28 @@ def test_async_youtube_dl_ydl_property(mocker: MockerFixture) -> None:
 
 
 @pytest.mark.asyncio
+async def test_setup_session_with_existing_session_and_retry(mocker: MockerFixture) -> None:
+    mock_jar = mocker.Mock(spec=yt_dlp.cookies.YoutubeDLCookieJar)
+    mock_jar.__iter__ = mocker.Mock(return_value=iter([]))
+    mocker.patch('yt_dlp_utils.aio.extract_cookies_from_browser', return_value=mock_jar)
+
+    existing = AsyncSession()
+    try:
+        client = await setup_session(browser='chrome',
+                                     profile='default',
+                                     session=existing,
+                                     setup_retry=True,
+                                     backoff_factor=0.25,
+                                     status_forcelist=[503])
+        assert client is existing
+        assert isinstance(client.retries, Retry)
+        assert client.retries.backoff_factor == pytest.approx(0.25)
+        assert client.retries.status_forcelist == {503}
+    finally:
+        await existing.close()
+
+
+@pytest.mark.asyncio
 async def test_setup_session_with_retry(mocker: MockerFixture) -> None:
     mock_jar = mocker.Mock(spec=yt_dlp.cookies.YoutubeDLCookieJar)
     mock_jar.__iter__ = mocker.Mock(return_value=iter([]))
@@ -229,6 +253,9 @@ async def test_setup_session_with_retry(mocker: MockerFixture) -> None:
                                  status_forcelist=[500, 502, 503])
 
     try:
-        assert isinstance(client, RetryClient)
+        assert isinstance(client, AsyncSession)
+        assert isinstance(client.retries, Retry)
+        assert client.retries.backoff_factor == pytest.approx(0.5)
+        assert client.retries.status_forcelist == {500, 502, 503}
     finally:
         await client.close()

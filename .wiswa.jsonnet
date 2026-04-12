@@ -10,19 +10,19 @@ local utils = import 'utils.libjsonnet';
     tool+: {
       poetry+: {
         dependencies+: {
-          aiohttp: {
+          niquests: {
             optional: true,
-            version: utils.latestPypiPackageVersionCaret('aiohttp'),
-          },
-          'aiohttp-retry': {
-            optional: true,
-            version: utils.latestPypiPackageVersionCaret('aiohttp-retry'),
+            version: utils.latestPypiPackageVersionCaret('niquests'),
           },
           requests: utils.latestPypiPackageVersionCaret('requests'),
+          'urllib3-future': {
+            optional: true,
+            version: utils.latestPypiPackageVersionCaret('urllib3-future'),
+          },
           'yt-dlp': { extras: ['default'], version: utils.latestPypiPackageVersionCaret('yt-dlp') },
         },
         extras: {
-          asyncio: ['aiohttp', 'aiohttp-retry'],
+          asyncio: ['niquests', 'urllib3-future'],
         },
         group+: {
           dev+: {
@@ -33,10 +33,9 @@ local utils = import 'utils.libjsonnet';
           },
           tests+: {
             dependencies+: {
-              aiohttp: utils.latestPypiPackageVersionCaret('aiohttp'),
-              'aiohttp-retry': utils.latestPypiPackageVersionCaret('aiohttp-retry'),
+              niquests: utils.latestPypiPackageVersionCaret('niquests'),
               'pytest-asyncio': utils.latestPypiPackageVersionCaret('pytest-asyncio'),
-              yarl: utils.latestPypiPackageVersionCaret('yarl'),
+              'urllib3-future': utils.latestPypiPackageVersionCaret('urllib3-future'),
             },
           },
         },
