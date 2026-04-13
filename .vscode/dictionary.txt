@@ -1,4 +1,5 @@
 aiohttp
+Ångström
 appimage
 asyncio
 autoclass
@@ -94,7 +95,6 @@ tryfirst
 ubyte
 udvare
 urllib
-urllib3
 vendored
 venv
 virtualenv
@@ -103,4 +103,3 @@ wiswa's
 yapf
 yapfignore
 yarnrc
-Ångström
