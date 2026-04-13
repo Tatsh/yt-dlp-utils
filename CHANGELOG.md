@@ -9,6 +9,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- README and Sphinx index now reference the `asyncio` optional extra instead of `aio`.
+
 ## [0.1.0] - 2026-04-12
 
 ### Changed

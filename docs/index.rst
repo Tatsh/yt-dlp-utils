@@ -1,7 +1,7 @@
 yt-dlp-utils
 ============
 
-Utilities for programmatic use of yt-dlp. To use the async API, install with the extra `aio`.
+Utilities for programmatic use of yt-dlp. To use the async API, install with the extra `asyncio`.
 
 .. include:: badges.rst
 

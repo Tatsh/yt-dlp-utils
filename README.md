@@ -38,4 +38,4 @@ Utilities for programmatic use of yt-dlp.
 pip install yt-dlp-utils
 ```
 
-To use the async API, install with the extra `aio`.
+To use the async API, install with the extra `asyncio`.
