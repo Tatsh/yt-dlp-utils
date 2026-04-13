@@ -7,11 +7,12 @@ import re
 import sys
 
 from requests.adapters import HTTPAdapter
-from typing_extensions import Unpack
+from typing_extensions import Unpack, override
 from urllib3 import Retry
 from yt_dlp.cookies import extract_cookies_from_browser
 import requests
 import yt_dlp
+import yt_dlp.cookies
 
 from .constants import DEFAULT_RETRY_BACKOFF_FACTOR, DEFAULT_RETRY_STATUS_FORCELIST, SHARED_HEADERS
 
@@ -25,22 +26,29 @@ log = logging.getLogger(__name__)
 
 class YoutubeDLLogger(yt_dlp.cookies.YDLLogger):
     """Logger for yt-dlp."""
-    def debug(self, message: str) -> None:  # noqa: PLR6301
+    @override
+    def debug(self, message: str) -> None:
         """Log a debug message."""
         if re.match(r'^\[download\]\s+[0-9\.]+%', message):
             return
         log.info('%s', re.sub(r'^\[(?:info|debug)\]\s+', '', message))
 
-    def info(self, message: str) -> None:  # noqa: PLR6301
+    @override
+    def info(self, message: str) -> None:
         """Log an info message."""
         log.info('%s', re.sub(r'^\[info\]\s+', '', message))
 
-    def warning(  # type: ignore[override]  # noqa: PLR6301
-            self, message: str, *, only_once: bool = False) -> None:  # noqa: ARG002
+    @override
+    def warning(  # type: ignore[override]
+            self,
+            message: str,
+            *,
+            only_once: bool = False) -> None:  # ty: ignore[invalid-method-override]
         """Log a warning message."""
         log.warning('%s', re.sub(r'^\[warn(?:ing)?\]\s+', '', message))
 
-    def error(self, message: str) -> None:  # noqa: PLR6301
+    @override
+    def error(self, message: str) -> None:
         """Log an error message."""
         log.error('%s', re.sub(r'^\[err(?:or)?\]\s+', '', message))
 
@@ -80,7 +88,7 @@ def get_configured_yt_dlp(sleep_time: int = 3,
     ydl_opts['sleep_interval_requests'] = sleep_time
     ydl_opts['verbose'] = debug
     sys.argv = old_sys_argv
-    return yt_dlp.YoutubeDL(ydl_opts | kwargs)
+    return yt_dlp.YoutubeDL(ydl_opts | kwargs)  # ty: ignore[invalid-argument-type]
 
 
 def setup_session(browser: str,
@@ -110,6 +118,8 @@ def setup_session(browser: str,
         Filter the cookies to only those that match the specified domains.
     headers : Mapping[str, str]
         The headers to use for the requests session. If not specified, a default set will be used.
+    session : requests.Session | None
+        An existing session to modify. If not specified, a new session will be created.
     status_forcelist : Collection[int]
         The status codes to retry on.
     setup_retry : bool

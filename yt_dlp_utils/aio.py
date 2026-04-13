@@ -80,7 +80,7 @@ class AsyncYoutubeDL:
                                          force_generic_extractor=force_generic_extractor,
                                          ie_key=ie_key,
                                          process=process)
-        return dict(result) if result is not None else None
+        return dict(result) if result is not None else None  # ty: ignore[no-matching-overload]
 
     async def download(self, urls: Iterable[str]) -> int:
         """Download videos asynchronously.
@@ -147,7 +147,7 @@ def get_configured_yt_dlp(sleep_time: int = 3,
     ydl_opts['sleep_interval_requests'] = sleep_time
     ydl_opts['verbose'] = debug
     sys.argv = old_sys_argv
-    return AsyncYoutubeDL(yt_dlp.YoutubeDL(ydl_opts | kwargs))
+    return AsyncYoutubeDL(yt_dlp.YoutubeDL(ydl_opts | kwargs))  # ty: ignore[invalid-argument-type]
 
 
 async def setup_session(browser: str,
@@ -216,7 +216,8 @@ async def setup_session(browser: str,
                         status_forcelist=set(status_forcelist))
 
     if session is None:
-        session = AsyncSession(headers=final_headers, retries=retries)
+        session = AsyncSession(headers=final_headers,
+                               retries=retries)  # ty: ignore[invalid-argument-type]
     else:
         session.headers.update(final_headers)
         if setup_retry:

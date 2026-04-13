@@ -8,7 +8,7 @@ dev = [
   "cz-path>=0.0.6",
   "mypy>=1.20.0",
   "ruff>=0.15.9",
-  "ty>=0.0.28",
+  "ty>=0.0.29",
   "types-requests>=2.33.0.20260402",
   "types-yt-dlp>=2026.3.17.20260402",
   "yapf>=0.43.0",
@@ -29,7 +29,7 @@ docs = [
 tests = [
   "coveralls>=4.1.0",
   "mock>=5.2.0",
-  "niquests>=3.0",
+  "niquests>=3.18.4",
   "pytest-asyncio>=1.3.0",
   "pytest-cov>=7.1.0",
   "pytest-mock>=3.15.1",
@@ -63,7 +63,7 @@ email = "audvare@gmail.com"
 name = "Andrew Udvare"
 
 [project.optional-dependencies]
-asyncio = ["niquests>=3.0", "urllib3-future>=2.19.902"]
+asyncio = ["niquests>=3.18.4", "urllib3-future>=2.19.902"]
 
 [project.urls]
 Issues = "https://github.com/Tatsh/yt-dlp-utils/issues"
