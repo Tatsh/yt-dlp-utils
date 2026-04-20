@@ -48,7 +48,8 @@ all rules in `.claude/rules/python.md`.
 ## Workflow
 
 1. Read `pyproject.toml` to get the list of all entry points in `[project.scripts]`.
-2. For each command module in `yt_dlp_utils/commands/`:
+2. For each command module in `yt_dlp_utils/commands/`
+   or just `yt_dlp_utils/main.py`:
    a. Read the file.
    b. Run each check above against every command.
    c. Apply fixes directly to the file.

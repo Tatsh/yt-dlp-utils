@@ -26,6 +26,7 @@ doctrees
 dunder
 eeyore
 elif
+esac
 esbenp
 esbonio
 excinfo
@@ -74,8 +75,10 @@ pypa
 pypi
 pyproject
 pytest
+pythonhosted
 referer
 regen
+ripgreprc
 rstcheck
 schemafile
 sdist
@@ -91,6 +94,7 @@ testpaths
 toctree
 tomlkit
 tomllib
+tostring
 tryfirst
 ubyte
 udvare
