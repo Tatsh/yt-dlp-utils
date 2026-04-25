@@ -18,6 +18,6 @@ SHARED_HEADERS = {
     'content-type': 'application/vnd.api+json',
     'dnt': '1',
     'pragma': 'no-cache',
-    'user-agent': USER_AGENT,
+    'user-agent': USER_AGENT
 }
 """Default headers for requests."""
