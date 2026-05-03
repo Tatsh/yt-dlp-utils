@@ -9,6 +9,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-05-02
+
 ### Fixed
 
 - README and Sphinx index now reference the `asyncio` optional extra instead of `aio`.
@@ -75,7 +77,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 First version.
 
-[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.8...v0.1.0
 [0.0.8]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/Tatsh/yt-dlp-utils/compare/v0.0.6...v0.0.7

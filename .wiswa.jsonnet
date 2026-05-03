@@ -5,7 +5,7 @@ local utils = import 'utils.libjsonnet';
   description: 'Utilities for programmatic use of yt-dlp.',
   keywords: ['command line', 'yt-dlp'],
   project_name: 'yt-dlp-utils',
-  version: '0.1.0',
+  version: '0.1.1',
   pyproject+: {
     tool+: {
       poetry+: {
