@@ -6,9 +6,9 @@ requires = ["hatchling"]
 dev = [
   "commitizen>=4.13.10",
   "cz-path>=0.0.6",
-  "mypy>=1.20.1",
-  "ruff==0.15.11",
-  "ty>=0.0.31",
+  "mypy>=1.20.2",
+  "ruff==0.15.12",
+  "ty>=0.0.32",
   "types-requests>=2.33.0.20260408",
   "types-yt-dlp>=2026.3.17.20260408",
   "yapf>=0.43.0",
@@ -32,7 +32,7 @@ tests = [
   "pytest-cov>=7.1.0",
   "pytest-mock>=3.15.1",
   "pytest>=9.0.3",
-  "urllib3-future>=2.19.909",
+  "urllib3-future>=2.19.912",
 ]
 
 [project]
@@ -61,7 +61,7 @@ email = "audvare@gmail.com"
 name = "Andrew Udvare"
 
 [project.optional-dependencies]
-asyncio = ["niquests>=3.18.6", "urllib3-future>=2.19.909"]
+asyncio = ["niquests>=3.18.6", "urllib3-future>=2.19.912"]
 
 [project.urls]
 Issues = "https://github.com/Tatsh/yt-dlp-utils/issues"
