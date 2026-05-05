@@ -6,6 +6,7 @@ local utils = import 'utils.libjsonnet';
   keywords: ['command line', 'yt-dlp'],
   project_name: 'yt-dlp-utils',
   version: '0.1.1',
+  security_policy_supported_versions: { '0.1.x': ':white_check_mark:' },
   pyproject+: {
     tool+: {
       poetry+: {
