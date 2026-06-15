@@ -1,7 +1,7 @@
 """Async utilities."""
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, cast
 import asyncio
 import logging
 import sys
@@ -18,6 +18,8 @@ from .lib import YoutubeDLLogger
 
 if TYPE_CHECKING:
     from collections.abc import Collection, Iterable, Mapping
+
+    from niquests.cookies import RequestsCookieJar
 
 __all__ = ('AsyncYoutubeDL', 'get_configured_yt_dlp', 'setup_session')
 
@@ -80,7 +82,7 @@ class AsyncYoutubeDL:
                                          force_generic_extractor=force_generic_extractor,
                                          ie_key=ie_key,
                                          process=process)
-        return dict(result) if result is not None else None  # ty: ignore[no-matching-overload]
+        return dict(result) if result is not None else None
 
     async def download(self, urls: Iterable[str]) -> int:
         """Download videos asynchronously.
@@ -147,7 +149,7 @@ def get_configured_yt_dlp(sleep_time: int = 3,
     ydl_opts['sleep_interval_requests'] = sleep_time
     ydl_opts['verbose'] = debug
     sys.argv = old_sys_argv
-    return AsyncYoutubeDL(yt_dlp.YoutubeDL(ydl_opts | kwargs))  # ty: ignore[invalid-argument-type]
+    return AsyncYoutubeDL(yt_dlp.YoutubeDL(ydl_opts | kwargs))
 
 
 async def setup_session(browser: str,
@@ -219,9 +221,10 @@ async def setup_session(browser: str,
         session = AsyncSession(headers=final_headers,
                                retries=retries)  # ty: ignore[invalid-argument-type]
     else:
-        session.headers.update(final_headers)
+        session.headers.update(cast('Mapping[str | bytes, str | bytes]', final_headers))
         if setup_retry:
             session.retries = retries
 
-    session.cookies = cookiejar_from_dict(cookies, cookiejar=session.cookies)
+    session.cookies = cast('RequestsCookieJar',
+                           cookiejar_from_dict(cookies, cookiejar=session.cookies))
     return session

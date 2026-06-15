@@ -88,7 +88,7 @@ def get_configured_yt_dlp(sleep_time: int = 3,
     ydl_opts['sleep_interval_requests'] = sleep_time
     ydl_opts['verbose'] = debug
     sys.argv = old_sys_argv
-    return yt_dlp.YoutubeDL(ydl_opts | kwargs)  # ty: ignore[invalid-argument-type]
+    return yt_dlp.YoutubeDL(ydl_opts | kwargs)
 
 
 def setup_session(browser: str,

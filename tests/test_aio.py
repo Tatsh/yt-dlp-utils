@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, cast
+from typing import TYPE_CHECKING
 
 from niquests import AsyncSession
 from urllib3_future.util.retry import Retry
@@ -11,7 +11,6 @@ import yt_dlp
 import yt_dlp.cookies
 
 if TYPE_CHECKING:
-    from niquests.cookies import RequestsCookieJar
     from pytest_mock import MockerFixture
 
 
@@ -47,8 +46,7 @@ async def test_setup_session_with_domains(mocker: MockerFixture) -> None:
         assert isinstance(session, AsyncSession)
         mock_jar.get_cookies_for_url.assert_called_once_with('https://example.com')
         assert session.headers['user-agent'] == SHARED_HEADERS['user-agent']
-        jar = cast('RequestsCookieJar', session.cookies)
-        assert jar.get_dict().get('cookie1') == 'value1'
+        assert session.cookies.get_dict().get('cookie1') == 'value1'
     finally:
         await session.close()
 
@@ -87,8 +85,7 @@ async def test_setup_session_with_domains_non_string_cookie(mocker: MockerFixtur
 
     try:
         assert isinstance(session, AsyncSession)
-        jar = cast('RequestsCookieJar', session.cookies)
-        assert jar.get_dict().get('cookie1') == 'value1'
+        assert session.cookies.get_dict().get('cookie1') == 'value1'
         assert 'cookie2' not in session.cookies
     finally:
         await session.close()
