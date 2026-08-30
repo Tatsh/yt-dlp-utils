@@ -2544,11 +2544,11 @@ wheels = [
 
 [[package]]
 name = "types-yt-dlp"
-version = "2026.8.19.20260822"
+version = "2026.8.19.20260823"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/62/86/4dda6ee04495dc46215d1a89a1a27bf4aaa5325b0d8679a9095aa7af02d7/types_yt_dlp-2026.8.19.20260822.tar.gz", hash = "sha256:bfcdea75fed4b8885ff41f9bc016bdb8a6c3d23386456e04a5be3a0768833719", size = 42172, upload-time = "2026-08-22T02:43:51.959Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ad/36/b6789e9ae960f033b332a2ee681fa92c67b72bdeddba024509374660409d/types_yt_dlp-2026.8.19.20260823.tar.gz", hash = "sha256:92eab69a3ae4d831be6ee81414c0b8de26d9d22c737363beaafccadb04c19914", size = 42202, upload-time = "2026-08-23T02:52:32.993Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5a/c4/62b8810ea0e9246915702c51fd007495a3060f74f6d2e102d1d1bb57e968/types_yt_dlp-2026.8.19.20260822-py3-none-any.whl", hash = "sha256:c481d7cfb35a5abae577ce9976541f6674f14b655c71635c1d2573251e2ee40b", size = 55296, upload-time = "2026-08-22T02:43:51.042Z" },
+    { url = "https://files.pythonhosted.org/packages/a0/dd/2a459c70b74e0edee91149a387afc8f260eb86d30d2071a43b6c060f2be1/types_yt_dlp-2026.8.19.20260823-py3-none-any.whl", hash = "sha256:757a80f574d23414323b84b3dc906b7ccc3ab27bfb4156dfac06f84331e084e9", size = 55299, upload-time = "2026-08-23T02:52:32.009Z" },
 ]
 
 [[package]]
