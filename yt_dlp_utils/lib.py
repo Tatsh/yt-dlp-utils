@@ -56,7 +56,7 @@ class YoutubeDLLogger(yt_dlp.cookies.YDLLogger):
 def get_configured_yt_dlp(sleep_time: int = 3,
                           *,
                           debug: bool = False,
-                          **kwargs: Unpack[yt_dlp._Params]) -> yt_dlp.YoutubeDL:
+                          **kwargs: Unpack[yt_dlp._YoutubeDLOptions]) -> yt_dlp.YoutubeDL:
     """
     Get a configured ``YoutubeDL`` instance.
 

@@ -117,7 +117,7 @@ class AsyncYoutubeDL:
 def get_configured_yt_dlp(sleep_time: int = 3,
                           *,
                           debug: bool = False,
-                          **kwargs: Unpack[yt_dlp._Params]) -> AsyncYoutubeDL:
+                          **kwargs: Unpack[yt_dlp._YoutubeDLOptions]) -> AsyncYoutubeDL:
     """
     Get an async-wrapped configured ``YoutubeDL`` instance.
 
