@@ -31,7 +31,7 @@ repos:
       - id: 'detect-private-key'
       - exclude: "^vcpkg.*\\.json$"
         id: 'end-of-file-fixer'
-      - files: "^(\\.(docker|eslint|prettier)ignore|CODEOWNERS|\\.gitattributes)$"
+      - files: "^(\\.(docker|eslint|prettier)ignore|CODEOWNERS|\\.gitattributes|\\.vscode/dictionary\\.txt)$"
         id: 'file-contents-sorter'
       - id: 'fix-byte-order-marker'
       - id: 'mixed-line-ending'
@@ -52,7 +52,7 @@ repos:
           - '--fix'
         id: 'ruff-check'
     repo: 'https://github.com/astral-sh/ruff-pre-commit'
-    rev: 'v0.16.8'
+    rev: 'v0.16.7'
   - hooks:
       - id: 'yapf'
         name: 'check Python files are formatted'

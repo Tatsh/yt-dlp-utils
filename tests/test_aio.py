@@ -4,11 +4,12 @@ from typing import TYPE_CHECKING
 
 from niquests import AsyncSession
 from urllib3_future.util.retry import Retry
-from yt_dlp_utils.aio import AsyncYoutubeDL, get_configured_yt_dlp, setup_session
-from yt_dlp_utils.constants import SHARED_HEADERS
 import pytest
 import yt_dlp
 import yt_dlp.cookies
+
+from yt_dlp_utils.aio import AsyncYoutubeDL, get_configured_yt_dlp, setup_session
+from yt_dlp_utils.constants import SHARED_HEADERS
 
 if TYPE_CHECKING:
     from pytest_mock import MockerFixture

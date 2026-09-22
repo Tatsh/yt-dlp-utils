@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, cast
 
+import yt_dlp.cookies
+
 from yt_dlp_utils.constants import SHARED_HEADERS
 from yt_dlp_utils.lib import YoutubeDLLogger, get_configured_yt_dlp, setup_session
-import yt_dlp.cookies
 
 if TYPE_CHECKING:
     from unittest.mock import Mock
