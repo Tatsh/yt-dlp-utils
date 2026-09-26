@@ -7,7 +7,7 @@ dev = [
   "commitizen>=4.18.1",
   "cz-path>=0.0.7",
   "mypy>=2.3.1",
-  "ruff==0.16.7",
+  "ruff==0.16.8",
   "ty>=0.0.81",
   "types-requests>=2.33.0.20260906",
   "types-yt-dlp>=2026.8.19.20260912",
