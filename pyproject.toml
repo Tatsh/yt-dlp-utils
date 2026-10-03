@@ -4,14 +4,14 @@ requires = ["hatchling"]
 
 [dependency-groups]
 dev = [
-  "commitizen>=4.18.1",
+  "commitizen>=4.19.0",
   "cz-path>=0.0.7",
   "mypy>=2.3.1",
-  "ruff==0.16.8",
-  "ty>=0.0.81",
+  "ruff==0.16.9",
+  "ty>=0.0.84",
   "types-requests>=2.33.0.20260906",
   "types-yt-dlp>=2026.8.19.20260912",
-  "yapf>=0.43.0",
+  "yapf>=0.43.0"
 ]
 docs = [
   "autodoc-pydantic>=2.2.0",
@@ -22,17 +22,17 @@ docs = [
   "sphinx-datatables>=1.0.0",
   "sphinx-immaterial>=0.13.9",
   "sphinx>=9.1.0; python_version >= \"3.13\"",
-  "tomlkit>=0.15.1",
+  "tomlkit>=0.15.1"
 ]
 tests = [
   "coveralls>=4.1.0",
   "mock>=5.2.0",
-  "niquests>=3.21.1",
+  "niquests>=3.21.2",
   "pytest-asyncio>=1.4.0",
   "pytest-cov>=7.1.0",
   "pytest-mock>=3.15.1",
   "pytest>=9.1.1",
-  "urllib3-future>=2.24.908",
+  "urllib3-future>=2.25.900"
 ]
 
 [project]
@@ -45,7 +45,7 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
-  "Typing :: Typed",
+  "Typing :: Typed"
 ]
 dependencies = ["requests>=2.34.2", "typing-extensions>=4.16.0", "yt-dlp[default]>=2026.8.19"]
 description = "Utilities for programmatic use of yt-dlp."
@@ -61,7 +61,7 @@ email = "audvare@gmail.com"
 name = "Andrew Udvare"
 
 [project.optional-dependencies]
-asyncio = ["niquests>=3.21.1", "urllib3-future>=2.24.908"]
+asyncio = ["niquests>=3.21.2", "urllib3-future>=2.25.900"]
 
 [project.urls]
 Issues = "https://github.com/Tatsh/yt-dlp-utils/issues"
@@ -80,7 +80,7 @@ version_files = [
   "docs/badges.rst",
   "docs/index.rst",
   "package.json",
-  "yt_dlp_utils/__init__.py",
+  "yt_dlp_utils/__init__.py"
 ]
 version_provider = "pep621"
 
@@ -163,7 +163,7 @@ ignore = [
   "missing-trailing-comma",
   "multi-line-summary-first-line",
   "subprocess-without-shell-equals-true",
-  "suspicious-subprocess-import",
+  "suspicious-subprocess-import"
 ]
 preview = true
 
