@@ -97,7 +97,6 @@ statusline
 tatsh
 testpaths
 toctree
-tomlkit
 tomllib
 tostring
 tryfirst
