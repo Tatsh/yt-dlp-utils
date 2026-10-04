@@ -1,14 +1,14 @@
 """Async utilities."""
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING, Any, Self, cast
 import asyncio
 import logging
 import sys
 
 from niquests import AsyncSession
 from niquests.cookies import cookiejar_from_dict
-from typing_extensions import Self, Unpack
+from typing_extensions import Unpack
 from urllib3_future.util.retry import Retry
 from yt_dlp.cookies import extract_cookies_from_browser
 import yt_dlp
