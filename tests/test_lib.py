@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, cast
+import sys
 
+import pytest
 import yt_dlp.cookies
 
 from yt_dlp_utils.constants import SHARED_HEADERS
@@ -158,6 +160,17 @@ def test_get_configured_yt_dlp_with_custom_params(mocker: MockerFixture) -> None
         'sleep_interval_requests': 5,
         'verbose': True
     })
+
+
+def test_get_configured_yt_dlp_restores_argv_on_error(mocker: MockerFixture) -> None:
+    mocker.patch('yt_dlp.parse_options', side_effect=RuntimeError('boom'))
+    mocker.patch('yt_dlp.YoutubeDL')
+    original_argv = sys.argv
+
+    with pytest.raises(RuntimeError, match='boom'):
+        get_configured_yt_dlp()
+
+    assert sys.argv is original_argv
 
 
 def test_get_configured_yt_dlp_with_custom_logger(mocker: MockerFixture) -> None:
