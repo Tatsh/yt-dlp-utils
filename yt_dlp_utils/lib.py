@@ -82,12 +82,14 @@ def get_configured_yt_dlp(sleep_time: int = 3,
     """
     old_sys_argv = sys.argv
     sys.argv = [sys.argv[0]]
-    ydl_opts = yt_dlp.parse_options()[-1]
+    try:
+        ydl_opts = yt_dlp.parse_options()[-1]
+    finally:
+        sys.argv = old_sys_argv
     ydl_opts['color'] = {'stdout': 'never', 'stderr': 'never'}
     ydl_opts['logger'] = kwargs.pop('logger', YoutubeDLLogger())
     ydl_opts['sleep_interval_requests'] = sleep_time
     ydl_opts['verbose'] = debug
-    sys.argv = old_sys_argv
     return yt_dlp.YoutubeDL(ydl_opts | kwargs)
 
 
