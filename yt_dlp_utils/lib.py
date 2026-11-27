@@ -43,7 +43,7 @@ class YoutubeDLLogger(yt_dlp.cookies.YDLLogger):
             self,
             message: str,
             *,
-            only_once: bool = False) -> None:  # ty: ignore[invalid-method-override]
+            only_once: bool = False) -> None:  # ty: ignore[incompatible-method-override]
         """Log a warning message."""
         log.warning('%s', re.sub(r'^\[warn(?:ing)?\]\s+', '', message))
 
