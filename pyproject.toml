@@ -4,13 +4,13 @@ requires = ["hatchling"]
 
 [dependency-groups]
 dev = [
-  "commitizen>=4.19.0",
+  "commitizen>=4.19.4",
   "cz-path>=0.0.7",
-  "mypy>=2.3.1",
-  "ruff==0.17.5",
-  "ty>=0.0.84",
-  "types-requests>=2.33.0.20260906",
-  "types-yt-dlp>=2026.8.19.20260912",
+  "mypy>=2.4.1",
+  "ruff==0.17.6",
+  "ty>=0.0.107",
+  "types-requests>=2.33.0.20261030",
+  "types-yt-dlp>=2026.8.19.20261030",
   "yapf>=0.43.0"
 ]
 docs = [
@@ -20,18 +20,18 @@ docs = [
   "esbonio>=2.1.0",
   "restructuredtext-lint>=2.0.2",
   "sphinx-datatables>=1.0.0",
-  "sphinx-immaterial>=0.13.9",
-  "sphinx>=9.1.0; python_version >= \"3.13\""
+  "sphinx-immaterial>=0.13.12",
+  "sphinx>=9.2.0; python_version >= \"3.13\""
 ]
 tests = [
   "coveralls>=4.1.0",
   "mock>=5.2.0",
-  "niquests>=3.21.2",
-  "pytest-asyncio>=1.4.0",
+  "niquests>=3.21.3",
+  "pytest-asyncio>=1.5.0",
   "pytest-cov>=7.1.0",
-  "pytest-mock>=3.16.0",
-  "pytest>=9.1.1",
-  "urllib3-future>=2.25.900"
+  "pytest-mock>=3.17.0",
+  "pytest>=9.2.0",
+  "urllib3-future>=2.25.907"
 ]
 
 [project]
@@ -45,13 +45,13 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
   "Typing :: Typed"
 ]
-dependencies = ["requests>=2.34.2", "typing-extensions>=4.16.0", "yt-dlp[default]>=2026.8.19"]
+dependencies = ["requests>=2.34.2", "typing-extensions>=4.16.0", "yt-dlp[default]>=2026.10.26"]
 description = "Utilities for programmatic use of yt-dlp."
 keywords = ["command line", "yt-dlp"]
 license = "MIT"
 name = "yt-dlp-utils"
 readme = "README.md"
-requires-python = ">=3.11,<4.0"
+requires-python = ">=3.11.5,<4.0"
 version = "0.1.1"
 
 [[project.authors]]
@@ -59,7 +59,7 @@ email = "audvare@gmail.com"
 name = "Andrew Udvare"
 
 [project.optional-dependencies]
-asyncio = ["niquests>=3.21.2", "urllib3-future>=2.25.900"]
+asyncio = ["niquests>=3.21.3", "urllib3-future>=2.25.907"]
 
 [project.urls]
 Issues = "https://github.com/Tatsh/yt-dlp-utils/issues"
